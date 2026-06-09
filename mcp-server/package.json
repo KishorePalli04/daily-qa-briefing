@@ -1,0 +1,14 @@
+{
+  "name": "daily-qa-briefing-mcp",
+  "version": "0.1.0",
+  "description": "Minimal MCP server for the Daily QA Briefing workspace",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "archiver": "^5.3.1",
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}

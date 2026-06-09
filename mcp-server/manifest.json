@@ -1,0 +1,9 @@
+{
+  "name": "daily-qa-briefing-mcp",
+  "description": "MCP server exposing the Daily QA Briefing workspace for upload/download",
+  "version": "0.1.0",
+  "endpoints": {
+    "manifest": "/manifest",
+    "workspaceDownload": "/download"
+  }
+}

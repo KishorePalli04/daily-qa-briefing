@@ -1,0 +1,100 @@
+name: 🤖 Daily QA Briefing
+
+# ── Triggers ────────────────────────────────────────────────
+on:
+  # Run every day at 9:00 PM UTC = 7:00 AM AEST (Sydney)
+  schedule:
+    - cron: '0 21 * * *'
+
+  # Allow manual trigger from GitHub UI (great for testing)
+  workflow_dispatch:
+    inputs:
+      debug:
+        description: 'Run in debug mode (headed browser via xvfb)'
+        required: false
+        default: 'false'
+
+# ── Permissions ─────────────────────────────────────────────
+permissions:
+  contents: read
+  pages: write       # For optional GitHub Pages deployment
+  id-token: write
+
+# ── Jobs ────────────────────────────────────────────────────
+jobs:
+  daily-briefing:
+    name: Run Daily QA Briefing
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      # 1. Checkout code
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Set up Node.js
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # 3. Install dependencies
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      # 4. Install Playwright browsers (Chromium only for speed)
+      - name: 🎭 Install Playwright browsers
+        run: npx playwright install chromium --with-deps
+
+      # 5. Run API tests first
+      - name: 🔌 Run API Tests (Hacker News)
+        run: npx playwright test tests/api/ --reporter=list
+        env:
+          CI: true
+
+      # 6. Run UI tests second (they merge data from API tests)
+      - name: 🌐 Run UI Tests (GitHub Trending)
+        run: npx playwright test tests/ui/ --reporter=list
+        env:
+          CI: true
+
+      # 7. Upload the HTML briefing report as artifact
+      - name: 📊 Upload Daily Briefing Report
+        if: always()   # Upload even if tests fail
+        uses: actions/upload-artifact@v4
+        with:
+          name: daily-briefing-${{ github.run_number }}
+          path: |
+            test-results/reports/daily-briefing.html
+            playwright-report/
+          retention-days: 30
+
+      # 8. Upload test results (traces, screenshots, videos)
+      - name: 📁 Upload Test Artifacts
+        if: failure()  # Only upload on failure to save space
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-${{ github.run_number }}
+          path: test-results/
+          retention-days: 7
+
+      # ── Optional: Deploy report to GitHub Pages ────────────
+      # Uncomment below to publish the briefing as a website
+      #
+      # - name: 🚀 Deploy to GitHub Pages
+      #   uses: actions/deploy-pages@v4
+      #   with:
+      #     artifact_name: daily-briefing-${{ github.run_number }}
+
+      # ── Optional: Send email/Slack notification ────────────
+      # - name: 📧 Send Slack Notification
+      #   if: always()
+      #   uses: slackapi/slack-github-action@v1.26.0
+      #   with:
+      #     payload: |
+      #       {
+      #         "text": "Daily QA Briefing: ${{ job.status }} — Run #${{ github.run_number }}"
+      #       }
+      #   env:
+      #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
