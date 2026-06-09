@@ -1,0 +1,8 @@
+{
+  "name": "scripts",
+  "version": "1.0.0",
+  "description": "Helper scripts for repository management",
+  "dependencies": {
+    "libsodium-wrappers": "^0.7.11"
+  }
+}
