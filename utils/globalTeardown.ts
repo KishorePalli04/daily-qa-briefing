@@ -11,6 +11,21 @@ export default async function globalTeardown(): Promise<void> {
 
   const data = BriefingStore.load() as BriefingData;
 
+  // Diagnostic logging for CI runs: show cwd and raw store contents
+  try {
+    console.log(`[Global Teardown] process.cwd(): ${process.cwd()}`);
+    const storePath = require('path').join(process.cwd(), 'test-results', 'briefing-data.json');
+    const exists = require('fs').existsSync(storePath);
+    console.log(`[Global Teardown] briefing-data.json exists: ${exists}`);
+    if (exists) {
+      const raw = require('fs').readFileSync(storePath, 'utf-8');
+      console.log('[Global Teardown] briefing-data.json contents:');
+      console.log(raw);
+    }
+  } catch (err) {
+    console.warn('[Global Teardown] Failed to read briefing-data.json for diagnostics:', err.message || err);
+  }
+
   if (!data.hnStories && !data.trendingRepos) {
     console.warn('[Global Teardown] No briefing data found — skipping report generation');
     return;
