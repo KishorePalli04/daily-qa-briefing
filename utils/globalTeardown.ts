@@ -27,8 +27,46 @@ export default async function globalTeardown(): Promise<void> {
   }
 
   if (!data.hnStories && !data.trendingRepos) {
-    console.warn('[Global Teardown] No briefing data found — skipping report generation');
-    return;
+    console.warn('[Global Teardown] No briefing data found — attempting fallback fetch for Hacker News');
+
+    // Fallback: try to fetch top stories directly in teardown (helps CI runs where
+    // the API test may not have written the store). This is best-effort — don't fail the run.
+    try {
+      const fetchTopStories = async () => {
+        const base = 'https://hacker-news.firebaseio.com/v0';
+        const resIds = await (globalThis as any).fetch(`${base}/topstories.json`);
+        if (!resIds.ok) return [] as any[];
+        const ids: number[] = await resIds.json();
+        const top = ids.slice(0, 10);
+        const stories = [] as any[];
+        for (const id of top) {
+          try {
+            const r = await (globalThis as any).fetch(`${base}/item/${id}.json`);
+            if (r.ok) stories.push(await r.json());
+          } catch (e) {
+            // ignore individual fetch errors
+          }
+        }
+        return stories;
+      };
+
+      const fallbackStories = await fetchTopStories();
+      if (fallbackStories.length > 0) {
+        console.log(`[Global Teardown] Fetched ${fallbackStories.length} fallback Hacker News stories`);
+        BriefingStore.save({ hnStories: fallbackStories });
+        // reload data variable so report picks up the fallback stories
+        Object.assign(data, BriefingStore.load());
+      } else {
+        console.warn('[Global Teardown] Fallback fetch returned no stories');
+      }
+    } catch (err) {
+      console.warn('[Global Teardown] Fallback fetch failed:', err.message || err);
+    }
+
+    if (!data.hnStories && !data.trendingRepos) {
+      console.warn('[Global Teardown] Still no briefing data — skipping report generation');
+      return;
+    }
   }
 
   const html = generateBriefingHTML(data);
