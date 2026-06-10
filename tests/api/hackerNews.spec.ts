@@ -1,5 +1,7 @@
 import { test, expect } from '../../fixtures';
 import { BriefingStore } from '../../utils/dataStore';
+import * as fs from 'fs';
+import * as path from 'path';
 
 /**
  * Hacker News API Tests
@@ -74,6 +76,20 @@ test.describe('Hacker News API', () => {
       generatedAt: new Date().toISOString(),
       hnStories: stories,
     });
+
+    // Diagnostic: read and print the briefing-data.json immediately after saving
+    try {
+      const storePath = path.join(process.cwd(), 'test-results', 'briefing-data.json');
+      if (fs.existsSync(storePath)) {
+        const raw = fs.readFileSync(storePath, 'utf-8');
+        console.log('[API Test] briefing-data.json contents immediately after save:');
+        console.log(raw);
+      } else {
+        console.warn('[API Test] briefing-data.json not found after save at', storePath);
+      }
+    } catch (err) {
+      console.warn('[API Test] Failed to read briefing-data.json for diagnostic:', err.message || err);
+    }
 
     console.log(`[API Test] ✅ ${stories.length} stories saved to briefing store`);
   });
