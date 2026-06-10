@@ -52,12 +52,17 @@ jobs:
           name: daily-briefing-report
           path: ${{ steps.find_report.outputs.report_path }}
 
-      - name: Send email via SendGrid (Node)
+      - name: Send email via Gmail SMTP
         if: ${{ steps.find_report.outputs.report_path != '' }}
-        env:
-          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
-          SENDGRID_FROM: ${{ secrets.SENDGRID_FROM }}
-          EMAIL_TO: ${{ secrets.EMAIL_TO }}
-          REPORT_PATH: ${{ steps.find_report.outputs.report_path }}
-        run: |
-          node ./scripts/send-report.js
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: "Daily QA Briefing"
+          body: "Attached is the daily QA briefing report."
+          to: ${{ secrets.EMAIL_TO }}
+          from: ${{ secrets.MAIL_FROM }}
+          secure: true
+          attachments: ${{ steps.find_report.outputs.report_path }}
