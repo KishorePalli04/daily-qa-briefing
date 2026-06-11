@@ -2,8 +2,7 @@ name: Daily QA Briefing
 
 on:
   schedule:
-    # Sydney 06:00 local time maps to 19:00 UTC (DST UTC+11) and 20:00 UTC (standard UTC+10).
-    - cron: '0 19 * * *'
+    # Runs once daily at 06:00 local (choose appropriate UTC mapping).
     - cron: '0 20 * * *'
   workflow_dispatch:
     inputs:
