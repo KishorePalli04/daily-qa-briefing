@@ -1,0 +1,79 @@
+name: Daily Stock Picks
+
+on:
+  schedule:
+    # 21:30 UTC on weekdays ≈ 07:30 AEST next morning.
+    # This runs after the US market close and before the ASX open, so the
+    # report reflects the latest available close for both markets.
+    - cron: '30 21 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      demo:
+        description: 'Run with synthetic demo data instead of live prices'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: read
+
+jobs:
+  stock-report:
+    name: Generate & email daily stock picks
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run stock analysis (live data)
+        id: analyze
+        run: node stock-report/run.js
+        env:
+          # Live by default; the manual "demo" input flips it to synthetic data.
+          STOCK_DEMO: ${{ github.event.inputs.demo == 'true' && '1' || '0' }}
+          STOCK_CONCURRENCY: '6'
+
+      - name: Load report into email body
+        if: always()
+        run: |
+          REPORT=test-results/reports/daily-stock-report.html
+          if [ -f "$REPORT" ]; then
+            {
+              echo 'REPORT_HTML<<REPORT_EOF'
+              cat "$REPORT"
+              echo 'REPORT_EOF'
+            } >> "$GITHUB_ENV"
+            echo "report_exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "report_exists=false" >> "$GITHUB_OUTPUT"
+          fi
+        id: load
+
+      - name: Upload report artifact
+        if: steps.load.outputs.report_exists == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: daily-stock-report-${{ github.run_number }}
+          path: test-results/reports/daily-stock-report.*
+          retention-days: 30
+
+      - name: Email the daily stock picks
+        if: steps.load.outputs.report_exists == 'true'
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: "📈 Daily Stock Picks — ${{ github.run_number }}"
+          from: ${{ secrets.MAIL_FROM }}
+          to: ${{ secrets.EMAIL_TO }}
+          html_body: ${{ env.REPORT_HTML }}
+          attachments: test-results/reports/daily-stock-report.html
