@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Homebush Newsagency — Your Local Hub in the Heart of Homebush</title>
+  <meta name="description" content="The Homebush Newsagency at 19 Rochester Street, Homebush NSW 2140. Stationery, greeting cards, newspapers, magazines, Opal cards and everyday convenience — open early till late, Monday to Saturday." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              blue: '#1d6ef5',
+              bluedark: '#154fb8',
+              bluelight: '#e8f1ff',
+              yellow: '#ffc933',
+              yellowsoft: '#fff4d1',
+            },
+          },
+          fontFamily: {
+            sans: ['ui-rounded', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-white text-slate-800 font-sans antialiased">
+
+  <!-- ===== Header ===== -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-brand-bluelight shadow-sm">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+      <a href="#top" class="flex items-center gap-2 min-w-0">
+        <span class="flex-shrink-0 w-10 h-10 rounded-full bg-brand-blue text-white flex items-center justify-center text-xl font-black shadow-md" aria-hidden="true">H</span>
+        <span class="font-extrabold text-brand-bluedark leading-tight text-base sm:text-xl truncate">The Homebush<br class="sm:hidden" /> Newsagency</span>
+      </a>
+      <a href="https://www.google.com/maps/search/?api=1&query=19+Rochester+Street+Homebush+NSW+2140"
+         target="_blank" rel="noopener"
+         class="flex-shrink-0 inline-flex items-center gap-1.5 bg-brand-yellow hover:bg-yellow-400 active:scale-95 transition text-brand-bluedark font-bold text-sm sm:text-base px-4 py-2.5 rounded-full shadow-md">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        Get Directions
+      </a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ===== Hero ===== -->
+    <section class="relative overflow-hidden bg-gradient-to-b from-brand-bluelight via-white to-white">
+      <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-brand-yellow/20 blur-2xl" aria-hidden="true"></div>
+      <div class="absolute -bottom-20 -left-16 w-72 h-72 rounded-full bg-brand-blue/10 blur-2xl" aria-hidden="true"></div>
+      <div class="relative max-w-5xl mx-auto px-4 pt-14 pb-16 sm:pt-20 sm:pb-24 text-center">
+        <p class="inline-block bg-brand-yellowsoft text-brand-bluedark font-semibold text-xs sm:text-sm px-4 py-1.5 rounded-full mb-5 shadow-sm">
+          📍 19 Rochester Street, Homebush · Open early till late
+        </p>
+        <h1 class="text-4xl sm:text-6xl font-black text-brand-bluedark leading-tight tracking-tight">
+          Your Local Hub in the<br class="hidden sm:block" />
+          Heart of <span class="text-brand-blue">Homebush</span>
+        </h1>
+        <p class="mt-5 text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto">
+          From your morning paper to a last-minute birthday card, we're right around the corner —
+          quick to pop into, easy to love, and always happy to see you.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <a href="#hours"
+             class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-blue hover:bg-brand-bluedark active:scale-95 transition text-white font-bold text-lg px-8 py-4 rounded-full shadow-lg shadow-brand-blue/30">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            See Opening Hours
+          </a>
+          <a href="#offer"
+             class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-brand-bluelight active:scale-95 transition text-brand-bluedark font-bold text-lg px-8 py-4 rounded-full border-2 border-brand-blue/20 shadow-sm">
+            What We Offer
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== What We Offer ===== -->
+    <section id="offer" class="py-14 sm:py-20 bg-white">
+      <div class="max-w-5xl mx-auto px-4">
+        <div class="text-center mb-10 sm:mb-14">
+          <p class="text-brand-blue font-bold uppercase tracking-widest text-xs sm:text-sm">What We Offer</p>
+          <h2 class="mt-2 text-3xl sm:text-4xl font-black text-brand-bluedark">A Little Bit of Everything, All in One Spot</h2>
+          <p class="mt-3 text-slate-600 max-w-xl mx-auto">Four aisles of local goodness — here's what keeps Homebush coming back.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+
+          <div class="group rounded-3xl border border-brand-bluelight bg-brand-bluelight/40 p-6 sm:p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition">
+            <div class="w-14 h-14 rounded-2xl bg-brand-blue text-white flex items-center justify-center text-3xl shadow-md mb-4" aria-hidden="true">✏️</div>
+            <h3 class="text-xl font-extrabold text-brand-bluedark">Stationery &amp; Office Supplies</h3>
+            <p class="mt-2 text-slate-600 leading-relaxed">
+              Pens that actually work, notebooks for big ideas, and everything for school projects due tomorrow. Sorted, from desk to backpack.
+            </p>
+          </div>
+
+          <div class="group rounded-3xl border border-brand-yellowsoft bg-brand-yellowsoft/60 p-6 sm:p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition">
+            <div class="w-14 h-14 rounded-2xl bg-brand-yellow text-brand-bluedark flex items-center justify-center text-3xl shadow-md mb-4" aria-hidden="true">🎁</div>
+            <h3 class="text-xl font-extrabold text-brand-bluedark">Greeting Cards &amp; Unique Gifts</h3>
+            <p class="mt-2 text-slate-600 leading-relaxed">
+              Birthdays, thank-yous and "just because" — find the perfect card and a thoughtful little gift without leaving the neighbourhood.
+            </p>
+          </div>
+
+          <div class="group rounded-3xl border border-brand-yellowsoft bg-brand-yellowsoft/60 p-6 sm:p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition">
+            <div class="w-14 h-14 rounded-2xl bg-brand-yellow text-brand-bluedark flex items-center justify-center text-3xl shadow-md mb-4" aria-hidden="true">📰</div>
+            <h3 class="text-xl font-extrabold text-brand-bluedark">Daily Newspapers &amp; Magazines</h3>
+            <p class="mt-2 text-slate-600 leading-relaxed">
+              The morning headlines, weekend lift-outs and your favourite mags — fresh on the stand every day, from first light.
+            </p>
+          </div>
+
+          <div class="group rounded-3xl border border-brand-bluelight bg-brand-bluelight/40 p-6 sm:p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 transition">
+            <div class="w-14 h-14 rounded-2xl bg-brand-blue text-white flex items-center justify-center text-3xl shadow-md mb-4" aria-hidden="true">🚌</div>
+            <h3 class="text-xl font-extrabold text-brand-bluedark">Opal Cards &amp; Convenience Items</h3>
+            <p class="mt-2 text-slate-600 leading-relaxed">
+              Top up your Opal on the way to Homebush Station, and grab snacks, drinks and daily essentials while you're at it.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Location & Hours ===== -->
+    <section id="hours" class="py-14 sm:py-20 bg-brand-blue relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-72 h-72 rounded-full bg-brand-yellow/15 blur-3xl" aria-hidden="true"></div>
+      <div class="relative max-w-5xl mx-auto px-4">
+        <div class="text-center mb-10">
+          <p class="text-brand-yellow font-bold uppercase tracking-widest text-xs sm:text-sm">Find Us &amp; Visit</p>
+          <h2 class="mt-2 text-3xl sm:text-4xl font-black text-white">Come Say G'day</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+
+          <div class="rounded-3xl bg-white p-6 sm:p-8 shadow-xl">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="w-12 h-12 rounded-2xl bg-brand-bluelight text-brand-blue flex items-center justify-center text-2xl" aria-hidden="true">📍</span>
+              <h3 class="text-xl font-extrabold text-brand-bluedark">Where to Find Us</h3>
+            </div>
+            <p class="text-2xl font-black text-brand-bluedark leading-snug">
+              19 Rochester Street<br />Homebush NSW 2140
+            </p>
+            <p class="mt-3 text-slate-600">
+              Just a short stroll from Homebush Station, right in the village shops. Easy to reach on foot, by bus or by train.
+            </p>
+            <a href="https://www.google.com/maps/search/?api=1&query=19+Rochester+Street+Homebush+NSW+2140"
+               target="_blank" rel="noopener"
+               class="mt-5 inline-flex items-center gap-2 bg-brand-yellow hover:bg-yellow-400 active:scale-95 transition text-brand-bluedark font-bold px-6 py-3 rounded-full shadow-md">
+              Get Directions
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </div>
+
+          <div class="rounded-3xl bg-white p-6 sm:p-8 shadow-xl">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="w-12 h-12 rounded-2xl bg-brand-yellowsoft text-brand-bluedark flex items-center justify-center text-2xl" aria-hidden="true">🕐</span>
+              <h3 class="text-xl font-extrabold text-brand-bluedark">Opening Hours</h3>
+            </div>
+            <dl class="divide-y divide-brand-bluelight">
+              <div class="flex items-center justify-between py-3">
+                <dt class="font-semibold text-slate-700">Monday – Friday</dt>
+                <dd class="font-bold text-brand-bluedark text-right">5:30 am – 7:30 pm</dd>
+              </div>
+              <div class="flex items-center justify-between py-3">
+                <dt class="font-semibold text-slate-700">Saturday</dt>
+                <dd class="font-bold text-brand-bluedark text-right">6:00 am – 7:00 pm</dd>
+              </div>
+              <div class="flex items-center justify-between py-3">
+                <dt class="font-semibold text-slate-700">Sunday</dt>
+                <dd class="font-bold text-slate-400 text-right">Closed</dd>
+              </div>
+            </dl>
+            <p class="mt-4 text-sm text-slate-500 bg-brand-yellowsoft/70 rounded-xl px-4 py-3">
+              ☀️ Early birds welcome — the papers are on the stand before sunrise, and we're here till late every trading day.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Footer ===== -->
+    <footer class="bg-brand-bluedark text-white">
+      <div class="max-w-5xl mx-auto px-4 py-10 text-center">
+        <p class="text-2xl font-black">The Homebush Newsagency</p>
+        <p class="mt-2 text-brand-bluelight/90">Proudly serving the Homebush community, one paper at a time. 💛</p>
+        <a href="tel:+61297460000" class="mt-4 inline-flex items-center gap-2 font-bold text-brand-yellow hover:text-yellow-300 transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          (02) 9746 0000
+        </a>
+        <p class="mt-6 text-sm text-brand-bluelight/70">
+          &copy; 2026 The Homebush Newsagency · 19 Rochester Street, Homebush NSW 2140 · See you soon, neighbour!
+        </p>
+      </div>
+    </footer>
+
+  </main>
+
+</body>
+</html>
