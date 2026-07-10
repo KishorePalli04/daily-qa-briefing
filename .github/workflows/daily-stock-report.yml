@@ -47,6 +47,7 @@ jobs:
             {
               echo 'REPORT_HTML<<REPORT_EOF'
               cat "$REPORT"
+              echo ''
               echo 'REPORT_EOF'
             } >> "$GITHUB_ENV"
             echo "report_exists=true" >> "$GITHUB_OUTPUT"
