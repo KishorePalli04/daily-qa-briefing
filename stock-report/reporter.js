@@ -270,7 +270,8 @@ function generateHTML(ranked) {
     </p>
   </div>
 </body>
-</html>`;
+</html>
+`;
 }
 
 function emptyRow() {
