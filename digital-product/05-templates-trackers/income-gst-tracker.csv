@@ -1,0 +1,8 @@
+Date,Client,Invoice #,Description,Amount incl GST (AUD),GST (10%),Ex-GST Income,Tax Set-Aside (30% of ex-GST),Estimated Take-Home,Paid?
+2026-07-10,Bay Coffee Co,INV-001,Social media pack,1320.00,120.00,1200.00,360.00,840.00,Yes
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+TOTALS,,,,1320.00,120.00,1200.00,360.00,840.00,
+NOTE,"GST column = Amount / 11 (only if registered for GST). Tax set-aside is a guide (~25-30%). Not tax advice - confirm with a registered tax agent.",,,,,,,,

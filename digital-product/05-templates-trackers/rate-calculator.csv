@@ -1,0 +1,16 @@
+Input,Value,Notes
+Desired annual take-home (AUD),80000,What you want in your pocket
+Weeks worked per year,46,Allow ~6 weeks off
+Billable hours per week,20,"Realistic - the rest is admin/marketing"
+Tax + super buffer %,35,Set-aside for tax & self-funded super
+Business costs per year (AUD),6000,Tools/software/subscriptions
+,,
+CALCULATED,Value,Formula
+Total to earn before tax,123077,"take-home / (1 - tax%)"
+Plus business costs,129077,"add yearly costs"
+Total billable hours/year,920,"weeks x hours"
+MINIMUM HOURLY RATE (AUD),140,"round up from total / hours"
+Suggested project floor (small),700,"~5 hrs at rate"
+Suggested project floor (medium),2100,"~15 hrs at rate"
+Suggested project floor (large),5600,"~40 hrs at rate"
+NOTE,"Price the OUTCOME, not the hour. Use these floors so you never quote below your number. Not financial advice.",
