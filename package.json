@@ -8,7 +8,9 @@
     "test:api": "playwright test tests/api/",
     "test:ui": "playwright test tests/ui/",
     "test:headed": "playwright test --headed",
-    "report": "playwright show-report"
+    "report": "playwright show-report",
+    "stocks": "node stock-report/run.js",
+    "stocks:demo": "STOCK_DEMO=1 node stock-report/run.js"
   },
   "jest": {
     "testEnvironment": "node",
