@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MY THAI Remedial Massage North Strathfield — experience relaxation, rejuvenation and professional healing. HICAPS available with instant health fund claims. Open 7 days, 10am–8pm." />
+  <title>MY THAI Remedial Massage — North Strathfield</title>
+  <style>
+    :root {
+      --black: #0e0d0c;
+      --charcoal: #1c1a18;
+      --gold: #c9a24b;
+      --gold-light: #e4c977;
+      --cream: #f7f2e9;
+      --warm: #f6e7d8;
+      --blush: #e8a08c;
+      --coral: #d97b63;
+      --text: #2a2622;
+      --muted: #6b6259;
+      --white: #ffffff;
+      --radius: 16px;
+      --shadow: 0 18px 45px -20px rgba(14, 13, 12, 0.55);
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3 {
+      font-family: "Georgia", "Times New Roman", serif;
+      line-height: 1.2;
+      letter-spacing: 0.2px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1140px, 92%);
+      margin-inline: auto;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-family: -apple-system, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+
+    /* ---------- Buttons ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 14px 30px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.98rem;
+      cursor: pointer;
+      border: 1.5px solid transparent;
+      transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), background 0.25s var(--ease);
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: var(--black);
+      box-shadow: 0 12px 28px -12px rgba(201, 162, 75, 0.9);
+    }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 16px 34px -12px rgba(201, 162, 75, 1); }
+    .btn-outline {
+      background: transparent;
+      color: var(--cream);
+      border-color: rgba(228, 201, 119, 0.6);
+    }
+    .btn-outline:hover { background: rgba(228, 201, 119, 0.12); transform: translateY(-2px); }
+
+    /* ---------- Navbar ---------- */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(14, 13, 12, 0.86);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 162, 75, 0.22);
+      transition: background 0.3s var(--ease);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 0;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand-mark {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, var(--blush), var(--coral) 65%, #b85a45);
+      display: grid; place-items: center;
+      font-size: 1.25rem;
+      box-shadow: 0 0 0 2px rgba(201, 162, 75, 0.5), inset 0 0 12px rgba(255,255,255,0.2);
+      flex-shrink: 0;
+    }
+    .brand-text { display: flex; flex-direction: column; line-height: 1.05; }
+    .brand-name {
+      font-family: "Georgia", serif;
+      color: var(--cream);
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 1px;
+    }
+    .brand-name .gold { color: var(--gold-light); }
+    .brand-sub {
+      font-size: 0.62rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .nav-links { display: flex; align-items: center; gap: 30px; }
+    .nav-links a {
+      color: var(--cream);
+      font-size: 0.92rem;
+      font-weight: 500;
+      opacity: 0.85;
+      position: relative;
+      transition: opacity 0.2s;
+    }
+    .nav-links a::after {
+      content: "";
+      position: absolute; left: 0; bottom: -6px;
+      width: 0; height: 2px;
+      background: var(--gold);
+      transition: width 0.3s var(--ease);
+    }
+    .nav-links a:hover { opacity: 1; }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta { padding: 10px 22px; font-size: 0.9rem; }
+
+    .nav-toggle {
+      display: none;
+      background: none; border: none; cursor: pointer;
+      flex-direction: column; gap: 5px;
+      padding: 6px;
+    }
+    .nav-toggle span {
+      width: 24px; height: 2px; background: var(--gold-light);
+      transition: 0.3s var(--ease);
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      color: var(--cream);
+      background:
+        radial-gradient(1000px 500px at 80% -10%, rgba(217, 123, 99, 0.28), transparent 60%),
+        radial-gradient(800px 500px at 10% 110%, rgba(201, 162, 75, 0.22), transparent 55%),
+        linear-gradient(160deg, #100f0d 0%, #1c1a17 55%, #14120f 100%);
+      overflow: hidden;
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 50px;
+      align-items: center;
+      padding: 92px 0 100px;
+    }
+    .hero h1 {
+      color: var(--white);
+      font-size: clamp(2.3rem, 5vw, 3.6rem);
+      margin-bottom: 22px;
+    }
+    .hero h1 .gold { color: var(--gold-light); }
+    .hero p.lead {
+      font-size: 1.15rem;
+      color: #ded6c9;
+      max-width: 540px;
+      margin-bottom: 34px;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 34px; }
+    .hero-badges { display: flex; flex-wrap: wrap; gap: 12px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 9px 16px;
+      border-radius: 999px;
+      background: rgba(247, 242, 233, 0.06);
+      border: 1px solid rgba(201, 162, 75, 0.35);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gold-light);
+    }
+
+    /* Hero card */
+    .hero-card {
+      background: linear-gradient(160deg, rgba(247, 231, 216, 0.1), rgba(247, 231, 216, 0.03));
+      border: 1px solid rgba(201, 162, 75, 0.3);
+      border-radius: 22px;
+      padding: 34px;
+      backdrop-filter: blur(6px);
+      box-shadow: var(--shadow);
+    }
+    .hero-card .flower {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, var(--blush), var(--coral) 65%, #b85a45);
+      display: grid; place-items: center; font-size: 1.9rem;
+      margin-bottom: 18px;
+      box-shadow: 0 0 0 4px rgba(201, 162, 75, 0.25);
+    }
+    .hero-card h3 { color: var(--white); font-size: 1.3rem; margin-bottom: 6px; }
+    .hero-card .price-note { color: var(--gold-light); font-weight: 600; font-size: 0.9rem; margin-bottom: 18px; }
+    .hero-card ul { list-style: none; display: grid; gap: 12px; }
+    .hero-card li { display: flex; gap: 10px; align-items: flex-start; color: #e7dfd3; font-size: 0.95rem; }
+    .hero-card li .tick { color: var(--gold); font-weight: 700; }
+
+    /* ---------- Section base ---------- */
+    section { padding: 88px 0; }
+    .section-head { text-align: center; max-width: 640px; margin: 0 auto 54px; }
+    .section-head h2 { font-size: clamp(1.9rem, 4vw, 2.7rem); color: var(--charcoal); margin-bottom: 14px; }
+    .section-head p { color: var(--muted); font-size: 1.05rem; }
+
+    /* ---------- About / Services ---------- */
+    #about { background: var(--white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+    .about-copy .eyebrow { margin-bottom: 12px; }
+    .about-copy h2 { font-size: clamp(1.9rem, 4vw, 2.6rem); color: var(--charcoal); margin-bottom: 18px; }
+    .about-copy p { color: var(--muted); margin-bottom: 16px; }
+    .about-feature {
+      display: flex; gap: 14px; align-items: flex-start;
+      background: var(--warm);
+      border-left: 3px solid var(--gold);
+      padding: 16px 18px; border-radius: 10px;
+      margin-top: 22px;
+    }
+    .about-feature strong { color: var(--charcoal); display: block; }
+    .about-feature span { color: var(--muted); font-size: 0.92rem; }
+
+    .services { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .service-card {
+      background: var(--cream);
+      border: 1px solid rgba(201, 162, 75, 0.25);
+      border-radius: var(--radius);
+      padding: 24px 22px;
+      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+      border-color: var(--gold);
+    }
+    .service-card .icon {
+      width: 46px; height: 46px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--warm), #f3d9c4);
+      display: grid; place-items: center; font-size: 1.4rem;
+      margin-bottom: 14px;
+    }
+    .service-card h3 { font-size: 1.1rem; color: var(--charcoal); margin-bottom: 6px; }
+    .service-card p { color: var(--muted); font-size: 0.92rem; }
+
+    /* ---------- Features banner ---------- */
+    #features {
+      background:
+        radial-gradient(700px 400px at 90% 0%, rgba(217, 123, 99, 0.18), transparent 60%),
+        linear-gradient(150deg, var(--black), var(--charcoal));
+      color: var(--cream);
+    }
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .feature-box {
+      text-align: center;
+      padding: 34px 24px;
+      border: 1px solid rgba(201, 162, 75, 0.28);
+      border-radius: var(--radius);
+      background: rgba(247, 242, 233, 0.04);
+      transition: transform 0.3s var(--ease), background 0.3s;
+    }
+    .feature-box:hover { transform: translateY(-5px); background: rgba(247, 242, 233, 0.08); }
+    .feature-box .big { font-size: 2rem; margin-bottom: 12px; }
+    .feature-box h3 { color: var(--gold-light); font-size: 1.15rem; margin-bottom: 8px; }
+    .feature-box p { color: #d7cfc2; font-size: 0.93rem; }
+
+    /* ---------- Locations ---------- */
+    #locations { background: var(--warm); }
+    .locations-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .location-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 26px 24px;
+      display: flex; align-items: center; gap: 16px;
+      box-shadow: 0 10px 30px -22px rgba(14,13,12,0.5);
+      transition: transform 0.3s var(--ease), box-shadow 0.3s;
+    }
+    .location-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .location-pin {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      display: grid; place-items: center; font-size: 1.3rem; color: var(--black);
+      flex-shrink: 0;
+    }
+    .location-card h3 { font-size: 1.15rem; color: var(--charcoal); }
+    .location-card span { color: var(--muted); font-size: 0.86rem; }
+
+    .locations-note { text-align: center; margin-top: 40px; }
+    .locations-note a { color: var(--coral); font-weight: 700; }
+
+    /* ---------- CTA strip ---------- */
+    .cta-strip {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--black);
+      text-align: center;
+      padding: 60px 0;
+    }
+    .cta-strip h2 { font-size: clamp(1.7rem, 4vw, 2.4rem); margin-bottom: 12px; }
+    .cta-strip p { margin-bottom: 26px; font-size: 1.08rem; font-weight: 500; }
+    .cta-strip .btn-black {
+      background: var(--black); color: var(--gold-light);
+      box-shadow: 0 14px 30px -14px rgba(14,13,12,0.8);
+    }
+    .cta-strip .btn-black:hover { transform: translateY(-2px); }
+
+    /* ---------- Footer ---------- */
+    footer {
+      background: var(--black);
+      color: #cfc7ba;
+      padding: 66px 0 30px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(201, 162, 75, 0.2);
+    }
+    .footer-col h4 {
+      color: var(--gold-light);
+      font-family: -apple-system, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.78rem;
+      margin-bottom: 18px;
+    }
+    .footer-brand .brand-name { font-size: 1.4rem; color: var(--cream); }
+    .footer-brand p { margin-top: 14px; max-width: 320px; font-size: 0.94rem; color: #b7afa0; }
+    .footer-list { list-style: none; display: grid; gap: 10px; }
+    .footer-list li { font-size: 0.94rem; display: flex; gap: 9px; align-items: flex-start; }
+    .footer-list .lbl { color: var(--gold); font-weight: 600; min-width: 62px; }
+    .footer-list a:hover { color: var(--gold-light); }
+    .hours-row { display: flex; justify-content: space-between; gap: 12px; font-size: 0.94rem; }
+    .hours-row .day { color: #cfc7ba; }
+    .hours-row .time { color: var(--gold-light); font-weight: 600; }
+    .pay-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .pay-tag {
+      font-size: 0.75rem; padding: 5px 12px; border-radius: 6px;
+      background: rgba(247, 242, 233, 0.06);
+      border: 1px solid rgba(201, 162, 75, 0.3);
+      color: var(--gold-light);
+    }
+    .footer-bottom {
+      text-align: center;
+      padding-top: 26px;
+      font-size: 0.82rem;
+      color: #8a8175;
+    }
+    .footer-phone {
+      font-family: "Georgia", serif;
+      font-size: 1.5rem;
+      color: var(--gold-light);
+      font-weight: 700;
+    }
+
+    /* ---------- Reveal animation ---------- */
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; padding: 64px 0 72px; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .locations-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+
+      .nav-links {
+        position: fixed;
+        inset: 0 0 0 auto;
+        width: min(300px, 82%);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 22px;
+        background: var(--black);
+        padding: 92px 30px 30px;
+        transform: translateX(105%);
+        transition: transform 0.35s var(--ease);
+        border-left: 1px solid rgba(201, 162, 75, 0.25);
+      }
+      .nav-links.open { transform: translateX(0); }
+      .nav-links .nav-cta { align-self: stretch; justify-content: center; }
+      .nav-toggle { display: flex; z-index: 120; }
+      .nav-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .nav-toggle.active span:nth-child(2) { opacity: 0; }
+      .nav-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    }
+    @media (max-width: 560px) {
+      .services { grid-template-columns: 1fr; }
+      .locations-grid { grid-template-columns: 1fr; }
+      section { padding: 62px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ NAV ============ -->
+  <nav class="nav" id="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#home" aria-label="MY THAI Remedial Massage home">
+        <span class="brand-mark">🌸</span>
+        <span class="brand-text">
+          <span class="brand-name">MY <span class="gold">THAI</span></span>
+          <span class="brand-sub">Remedial Massage</span>
+        </span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">Services</a>
+        <a href="#features">Health Funds</a>
+        <a href="#locations">Locations</a>
+        <a href="#contact">Contact</a>
+        <a class="btn btn-gold nav-cta" href="tel:0283551700">📞 (02) 8355 1700</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero" id="home">
+    <div class="container hero-inner">
+      <div class="reveal in">
+        <span class="eyebrow">North Strathfield · Est. Wellbeing</span>
+        <h1>Experience relaxation, rejuvenation &amp; professional <span class="gold">healing</span>.</h1>
+        <p class="lead">Welcome to MY THAI Remedial Massage. Our qualified therapists provide personalised treatments designed to restore your body, calm your mind, and renew your energy.</p>
+        <div class="hero-actions">
+          <a class="btn btn-gold" href="tel:0283551700">📞 Call Now — (02) 8355 1700</a>
+          <a class="btn btn-outline" href="#locations">View Locations</a>
+        </div>
+        <div class="hero-badges">
+          <span class="badge">✔ HICAPS Available</span>
+          <span class="badge">✔ Instant Health Fund Claims</span>
+          <span class="badge">✔ Open 7 Days · 10am–8pm</span>
+        </div>
+      </div>
+
+      <aside class="hero-card reveal in">
+        <div class="flower">🌸</div>
+        <h3>Remedial Massage</h3>
+        <p class="price-note">Instant Health Fund Claims for Remedial Massage</p>
+        <ul>
+          <li><span class="tick">✔</span> Stress &amp; tension relief</li>
+          <li><span class="tick">✔</span> Back pain &amp; headache management</li>
+          <li><span class="tick">✔</span> Improved sleep &amp; energy levels</li>
+          <li><span class="tick">✔</span> Enhanced flexibility &amp; mobility</li>
+          <li><span class="tick">✔</span> HICAPS on-the-spot claiming</li>
+        </ul>
+      </aside>
+    </div>
+  </header>
+
+  <!-- ============ ABOUT & SERVICES ============ -->
+  <section id="about">
+    <div class="container about-grid">
+      <div class="about-copy reveal">
+        <span class="eyebrow">About Us</span>
+        <h2>Personalised care for your wellbeing</h2>
+        <p>At MY THAI Remedial Massage, every treatment is tailored to you. We blend authentic Thai techniques with professional remedial therapy to target the areas that need it most — supporting genuine, lasting wellbeing.</p>
+        <p>Whether you're recovering from strain, managing chronic tension, or simply seeking a moment of calm, our therapists design a session around your body and your goals.</p>
+        <div class="about-feature">
+          <span style="font-size:1.5rem">💳</span>
+          <div>
+            <strong>HICAPS Available</strong>
+            <span>Claim on the spot with your private health fund — no paperwork, no waiting.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="services">
+          <div class="service-card">
+            <div class="icon">🧘</div>
+            <h3>Stress &amp; Tension Relief</h3>
+            <p>Melt away built-up stress and release muscular tension for deep, whole-body calm.</p>
+          </div>
+          <div class="service-card">
+            <div class="icon">💆</div>
+            <h3>Back Pain &amp; Headaches</h3>
+            <p>Targeted remedial work to ease back pain and reduce tension headaches.</p>
+          </div>
+          <div class="service-card">
+            <div class="icon">🌙</div>
+            <h3>Better Sleep &amp; Energy</h3>
+            <p>Restore your natural rhythm for improved sleep quality and lasting energy.</p>
+          </div>
+          <div class="service-card">
+            <div class="icon">🤸</div>
+            <h3>Flexibility &amp; Mobility</h3>
+            <p>Improve range of motion and keep your body moving freely and comfortably.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURES / HEALTH FUNDS ============ -->
+  <section id="features">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Health Fund Friendly</span>
+        <h2 style="color:var(--cream)">Claim your massage instantly</h2>
+        <p style="color:#d7cfc2">Skip the paperwork. We make private health fund claiming quick and effortless.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-box reveal">
+          <div class="big">💳</div>
+          <h3>HICAPS Available</h3>
+          <p>Swipe your health fund card and claim your rebate right here, on the spot.</p>
+        </div>
+        <div class="feature-box reveal">
+          <div class="big">⚡</div>
+          <h3>Instant Claims</h3>
+          <p>Instant Health Fund Claims for Remedial Massage — pay only the gap.</p>
+        </div>
+        <div class="feature-box reveal">
+          <div class="big">🗓️</div>
+          <h3>Open 7 Days</h3>
+          <p>Monday to Sunday, 10:00 AM – 8:00 PM. Book a time that suits your day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LOCATIONS ============ -->
+  <section id="locations">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Find Us</span>
+        <h2>Six convenient locations</h2>
+        <p>Visit us across Sydney — professional remedial massage, close to you.</p>
+      </div>
+      <div class="locations-grid">
+        <div class="location-card reveal"><div class="location-pin">📍</div><div><h3>Sans Souci</h3><span>Remedial Massage</span></div></div>
+        <div class="location-card reveal"><div class="location-pin">📍</div><div><h3>Kogarah</h3><span>Remedial Massage</span></div></div>
+        <div class="location-card reveal"><div class="location-pin">📍</div><div><h3>Glebe</h3><span>Remedial Massage</span></div></div>
+        <div class="location-card reveal"><div class="location-pin">📍</div><div><h3>Sylvania</h3><span>Remedial Massage</span></div></div>
+        <div class="location-card reveal"><div class="location-pin">📍</div><div><h3>Hurstville</h3><span>Remedial Massage</span></div></div>
+        <div class="location-card reveal"><div class="location-pin">📍</div><div><h3>North Strathfield</h3><span>Remedial Massage</span></div></div>
+      </div>
+      <p class="locations-note reveal">Not sure which is closest? Call us at <a href="tel:0283551700">(02) 8355 1700</a> and we'll help.</p>
+    </div>
+  </section>
+
+  <!-- ============ CTA STRIP ============ -->
+  <div class="cta-strip">
+    <div class="container reveal">
+      <h2>Ready to feel your best?</h2>
+      <p>Book your personalised remedial massage today — open every day, 10am to 8pm.</p>
+      <a class="btn btn-black" href="tel:0283551700">📞 Call (02) 8355 1700</a>
+    </div>
+  </div>
+
+  <!-- ============ FOOTER ============ -->
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col footer-brand">
+          <div class="brand">
+            <span class="brand-mark">🌸</span>
+            <span class="brand-text">
+              <span class="brand-name">MY <span class="gold">THAI</span></span>
+              <span class="brand-sub">Remedial Massage</span>
+            </span>
+          </div>
+          <p>Experience relaxation, rejuvenation, and professional healing at MY THAI Remedial Massage, North Strathfield.</p>
+          <div class="pay-tags">
+            <span class="pay-tag">Credit Cards</span>
+            <span class="pay-tag">Debit Cards</span>
+            <span class="pay-tag">American Express</span>
+            <span class="pay-tag">HICAPS</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul class="footer-list">
+            <li><span class="lbl">Phone</span> <a href="tel:0283551700" class="footer-phone">(02) 8355 1700</a></li>
+            <li><span class="lbl">Area</span> North Strathfield, Sydney NSW</li>
+            <li><span class="lbl">Claims</span> HICAPS &amp; instant health fund claims</li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Opening Hours</h4>
+          <ul class="footer-list">
+            <li class="hours-row" style="width:100%"><span class="day">Monday – Sunday</span><span class="time">10:00 AM – 8:00 PM</span></li>
+          </ul>
+          <p style="margin-top:14px;font-size:0.88rem;color:#9c9386">Open every day of the week, including weekends and public holidays where available.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © <span id="year"></span> MY THAI Remedial Massage · North Strathfield · Sans Souci · Kogarah · Glebe · Sylvania · Hurstville
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    (function () {
+      var toggle = document.getElementById('navToggle');
+      var links = document.getElementById('navLinks');
+      toggle.addEventListener('click', function () {
+        var open = links.classList.toggle('open');
+        toggle.classList.toggle('active', open);
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      // Close menu when a link is tapped
+      links.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          links.classList.remove('open');
+          toggle.classList.remove('active');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    })();
+
+    // Current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Scroll reveal
+    (function () {
+      var els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) {
+        els.forEach(function (e) { e.classList.add('in'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.14 });
+      els.forEach(function (e) { io.observe(e); });
+    })();
+  </script>
+</body>
+</html>
