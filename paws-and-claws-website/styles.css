@@ -1,0 +1,45 @@
+/* Paws & Claws Academy — custom styles layered on top of Tailwind (CDN) */
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem; /* offset for the fixed header when jumping to anchors */
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Tailwind's CDN build doesn't ship these numeric font-weight utilities by
+   default, so define the ones the markup relies on. */
+.font-500 { font-weight: 500; }
+.font-600 { font-weight: 600; }
+.font-700 { font-weight: 700; }
+.font-800 { font-weight: 800; }
+
+/* Gentle entrance for cards/sections as they scroll into view.
+   Falls back gracefully where IntersectionObserver isn't used. */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* Nicer focus styles for keyboard users */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #d3762a;
+  outline-offset: 2px;
+}
