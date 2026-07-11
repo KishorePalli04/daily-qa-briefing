@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TestCraft Academy · Learn QA &amp; Automation with Kishore Palli</title>
+<meta name="description" content="Live QA &amp; test-automation mentoring from an ISTQB-certified Senior Automation Engineer with 12 years' experience. Master Playwright, Selenium, API testing, CI/CD and land your first QA role." />
+<style>
+  :root{
+    --bg-0:#070912;
+    --bg-1:#0b1024;
+    --ink:#eaf0ff;
+    --ink-dim:#9aa8c7;
+    --ink-faint:#66739a;
+    --cyan:#22d3ee;
+    --violet:#8b5cf6;
+    --teal:#2dd4bf;
+    --amber:#fbbf24;
+    --card:rgba(19,26,54,0.55);
+    --card-brd:rgba(120,140,220,0.18);
+    --glow-cyan:rgba(34,211,238,0.55);
+    --glow-violet:rgba(139,92,246,0.55);
+    --maxw:1180px;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Segoe UI',system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg-0);
+    color:var(--ink);
+    overflow-x:hidden;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--violet);color:#fff}
+
+  /* ---------- Animated cosmic backdrop ---------- */
+  .bg-scene{position:fixed;inset:0;z-index:-2;background:
+     radial-gradient(1200px 800px at 15% -10%, #16204a 0%, transparent 55%),
+     radial-gradient(1000px 700px at 100% 0%, #23164a 0%, transparent 50%),
+     radial-gradient(900px 900px at 50% 120%, #0c2740 0%, transparent 55%),
+     linear-gradient(180deg,var(--bg-0),var(--bg-1));}
+  .blob{position:fixed;border-radius:50%;filter:blur(70px);opacity:.5;z-index:-1;
+     animation:drift 22s var(--ease) infinite alternate;will-change:transform}
+  .blob.b1{width:460px;height:460px;left:-120px;top:-80px;background:radial-gradient(circle,rgba(34,211,238,.6),transparent 70%)}
+  .blob.b2{width:520px;height:520px;right:-140px;top:120px;background:radial-gradient(circle,rgba(139,92,246,.55),transparent 70%);animation-duration:28s}
+  .blob.b3{width:400px;height:400px;left:40%;bottom:-160px;background:radial-gradient(circle,rgba(45,212,191,.45),transparent 70%);animation-duration:25s}
+  @keyframes drift{to{transform:translate3d(60px,50px,0) scale(1.12)}}
+
+  .stars{position:fixed;inset:0;z-index:-1;pointer-events:none}
+  .star{position:absolute;width:2px;height:2px;border-radius:50%;background:#cfe0ff;opacity:.7;animation:twinkle 4s ease-in-out infinite}
+  @keyframes twinkle{0%,100%{opacity:.15;transform:scale(.6)}50%{opacity:.9;transform:scale(1.2)}}
+
+  /* ---------- Layout ---------- */
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  section{position:relative}
+
+  /* ---------- Nav ---------- */
+  header{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .4s,backdrop-filter .4s,border-color .4s;
+     border-bottom:1px solid transparent}
+  header.scrolled{background:rgba(8,11,26,.72);backdrop-filter:blur(14px);border-color:var(--card-brd)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:.3px;font-size:1.06rem}
+  .brand .logo{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:1.1rem;
+     background:linear-gradient(135deg,var(--cyan),var(--violet));box-shadow:0 0 22px var(--glow-cyan);color:#04121a}
+  .brand small{display:block;font-weight:500;font-size:.68rem;color:var(--ink-dim);letter-spacing:1.4px;text-transform:uppercase}
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-links a{font-size:.92rem;color:var(--ink-dim);transition:color .25s;position:relative}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;border-radius:2px;
+     background:linear-gradient(90deg,var(--cyan),var(--violet));transition:width .3s}
+  .nav-links a:hover::after{width:100%}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:.94rem;padding:13px 26px;border-radius:999px;
+     border:none;cursor:pointer;transition:transform .25s var(--ease),box-shadow .25s;position:relative;white-space:nowrap}
+  .btn-primary{background:linear-gradient(135deg,var(--cyan),var(--violet));color:#050914;
+     box-shadow:0 10px 34px -8px var(--glow-violet),0 0 0 1px rgba(255,255,255,.08) inset}
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 44px -8px var(--glow-violet)}
+  .btn-ghost{background:rgba(255,255,255,.04);color:var(--ink);border:1px solid var(--card-brd)}
+  .btn-ghost:hover{transform:translateY(-3px);border-color:var(--cyan);box-shadow:0 0 24px -6px var(--glow-cyan)}
+  .nav .btn{padding:11px 22px}
+  @media(max-width:860px){.nav-links{display:none}}
+
+  /* ---------- Hero ---------- */
+  .hero{min-height:100vh;display:flex;align-items:center;padding:120px 0 80px;perspective:1400px}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+  @media(max-width:940px){.hero-grid{grid-template-columns:1fr;gap:60px}}
+
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:.8rem;font-weight:600;letter-spacing:1.5px;
+     text-transform:uppercase;color:var(--cyan);padding:8px 16px;border-radius:999px;
+     background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.25);margin-bottom:26px}
+  .eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 12px var(--teal);animation:pulse 1.8s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+  h1.title{font-size:clamp(2.5rem,5.4vw,4.05rem);line-height:1.04;font-weight:800;letter-spacing:-1.4px}
+  h1.title .grad{background:linear-gradient(110deg,var(--cyan) 10%,var(--violet) 60%,var(--teal));
+     -webkit-background-clip:text;background-clip:text;color:transparent}
+  .lead{font-size:1.14rem;color:var(--ink-dim);margin:24px 0 34px;max-width:560px}
+  .lead b{color:var(--ink);font-weight:600}
+  .hero-cta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:34px}
+  .trust{display:flex;gap:28px;flex-wrap:wrap;align-items:center}
+  .trust .t{display:flex;flex-direction:column}
+  .trust .t b{font-size:1.5rem;font-weight:800;background:linear-gradient(120deg,var(--cyan),var(--violet));
+     -webkit-background-clip:text;background-clip:text;color:transparent}
+  .trust .t span{font-size:.78rem;color:var(--ink-faint);letter-spacing:.4px}
+  .trust .sep{width:1px;height:38px;background:var(--card-brd)}
+
+  /* ---------- 3D floating cluster ---------- */
+  .stage{position:relative;height:460px;transform-style:preserve-3d;transition:transform .3s var(--ease)}
+  @media(max-width:940px){.stage{height:400px}}
+  .float{position:absolute;transform-style:preserve-3d;will-change:transform}
+  .anim-float{animation:bob 6s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+
+  .core-card{left:50%;top:50%;width:290px;margin:-150px 0 0 -145px;padding:26px;border-radius:22px;
+     background:linear-gradient(160deg,rgba(30,40,80,.85),rgba(16,20,44,.9));
+     border:1px solid var(--card-brd);box-shadow:0 40px 90px -30px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.04) inset;
+     backdrop-filter:blur(8px);z-index:5}
+  .core-card .avatar{width:64px;height:64px;border-radius:16px;display:grid;place-items:center;font-size:1.6rem;font-weight:800;
+     background:linear-gradient(135deg,var(--cyan),var(--violet));color:#050914;box-shadow:0 0 30px var(--glow-cyan);margin-bottom:16px}
+  .core-card h3{font-size:1.18rem;font-weight:800}
+  .core-card .role{color:var(--cyan);font-size:.84rem;font-weight:600;margin-bottom:14px}
+  .core-card .terminal{background:#05070f;border-radius:11px;padding:12px 14px;font-family:'SF Mono',Consolas,monospace;
+     font-size:.72rem;line-height:1.7;border:1px solid rgba(120,140,220,.14)}
+  .core-card .terminal .g{color:var(--teal)}
+  .core-card .terminal .c{color:var(--ink-faint)}
+  .core-card .terminal .p{color:var(--amber)}
+
+  .chip{padding:13px 17px;border-radius:15px;background:var(--card);border:1px solid var(--card-brd);
+     backdrop-filter:blur(10px);box-shadow:0 20px 50px -22px rgba(0,0,0,.7);display:flex;align-items:center;gap:11px;
+     font-weight:600;font-size:.9rem;white-space:nowrap}
+  .chip .ic{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;font-size:1.05rem}
+  .chip.c1{left:-10px;top:26px;z-index:6}    .chip.c1 .ic{background:rgba(34,211,238,.16);color:var(--cyan)}
+  .chip.c2{right:-6px;top:70px;z-index:6}    .chip.c2 .ic{background:rgba(139,92,246,.16);color:var(--violet)}
+  .chip.c3{left:6px;bottom:60px;z-index:6}   .chip.c3 .ic{background:rgba(45,212,191,.16);color:var(--teal)}
+  .chip.c4{right:0;bottom:24px;z-index:6}    .chip.c4 .ic{background:rgba(251,191,36,.16);color:var(--amber)}
+  .chip small{display:block;font-weight:500;font-size:.68rem;color:var(--ink-faint)}
+
+  .badge-cert{left:50%;margin-left:-60px;top:-6px;z-index:7;padding:9px 16px;border-radius:999px;font-size:.78rem;font-weight:700;
+     background:linear-gradient(135deg,var(--amber),#f59e0b);color:#241400;box-shadow:0 10px 30px -8px rgba(251,191,36,.6);
+     display:flex;align-items:center;gap:7px}
+
+  /* connective glow ring */
+  .ring{left:50%;top:50%;width:420px;height:420px;margin:-210px 0 0 -210px;border-radius:50%;
+     border:1px dashed rgba(120,140,220,.22);z-index:1;animation:spin 40s linear infinite}
+  .ring::before{content:"";position:absolute;inset:38px;border-radius:50%;border:1px dashed rgba(120,140,220,.14)}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* ---------- Section shell ---------- */
+  .sec{padding:100px 0}
+  .sec-head{text-align:center;max-width:680px;margin:0 auto 60px}
+  .sec-head .kick{color:var(--cyan);font-weight:700;letter-spacing:2px;font-size:.8rem;text-transform:uppercase}
+  .sec-head h2{font-size:clamp(2rem,3.6vw,2.7rem);font-weight:800;letter-spacing:-.8px;margin:12px 0 16px}
+  .sec-head p{color:var(--ink-dim);font-size:1.05rem}
+
+  .reveal{opacity:0;transform:translateY(38px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- Curriculum cards (tilt) ---------- */
+  .grid{display:grid;gap:24px}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:940px){.g3{grid-template-columns:repeat(2,1fr)}.g4{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:600px){.g3,.g4{grid-template-columns:1fr}}
+
+  .tilt{position:relative;transform-style:preserve-3d;transition:transform .3s var(--ease)}
+  .course{padding:30px 26px;border-radius:20px;background:var(--card);border:1px solid var(--card-brd);
+     backdrop-filter:blur(10px);height:100%;transition:border-color .3s,box-shadow .3s}
+  .course:hover{border-color:rgba(34,211,238,.5);box-shadow:0 30px 60px -30px rgba(0,0,0,.8),0 0 30px -14px var(--glow-cyan)}
+  .course .num{font-family:monospace;font-size:.78rem;color:var(--ink-faint);letter-spacing:1px}
+  .course .ic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;font-size:1.5rem;margin:14px 0 18px;
+     background:linear-gradient(135deg,rgba(34,211,238,.14),rgba(139,92,246,.14));border:1px solid var(--card-brd);
+     transform:translateZ(40px)}
+  .course h3{font-size:1.2rem;font-weight:700;margin-bottom:10px}
+  .course p{color:var(--ink-dim);font-size:.93rem;margin-bottom:16px}
+  .course ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .course li{font-size:.86rem;color:var(--ink-dim);display:flex;gap:10px;align-items:flex-start}
+  .course li::before{content:"▹";color:var(--cyan);font-weight:700}
+  .course .lvl{position:absolute;top:22px;right:22px;font-size:.68rem;font-weight:700;padding:5px 11px;border-radius:999px;
+     background:rgba(139,92,246,.14);color:#c4b5fd;border:1px solid rgba(139,92,246,.3)}
+
+  /* ---------- Skills marquee ---------- */
+  .marquee{overflow:hidden;padding:26px 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+     mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+  .track{display:flex;gap:16px;width:max-content;animation:scroll 34s linear infinite}
+  .marquee:hover .track{animation-play-state:paused}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+  .tech{padding:11px 22px;border-radius:12px;background:var(--card);border:1px solid var(--card-brd);
+     font-weight:600;font-size:.92rem;color:var(--ink-dim);white-space:nowrap;display:flex;align-items:center;gap:9px}
+  .tech b{color:var(--ink);font-weight:700}
+
+  /* ---------- About / mentor ---------- */
+  .about{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:center}
+  @media(max-width:940px){.about{grid-template-columns:1fr;gap:40px}}
+  .mentor-card{border-radius:24px;padding:38px;background:linear-gradient(160deg,rgba(30,40,80,.6),rgba(14,18,40,.75));
+     border:1px solid var(--card-brd);box-shadow:0 40px 90px -40px rgba(0,0,0,.8);position:relative;overflow:hidden}
+  .mentor-card::before{content:"";position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;
+     background:radial-gradient(circle,var(--glow-violet),transparent 70%);filter:blur(20px)}
+  .mentor-card .big{width:88px;height:88px;border-radius:22px;display:grid;place-items:center;font-size:2rem;font-weight:800;
+     background:linear-gradient(135deg,var(--cyan),var(--violet));color:#050914;box-shadow:0 0 40px var(--glow-cyan);margin-bottom:22px}
+  .mentor-card h3{font-size:1.5rem;font-weight:800}
+  .mentor-card .sub{color:var(--cyan);font-weight:600;margin-bottom:20px}
+  .mentor-card .facts{display:flex;flex-direction:column;gap:13px;position:relative}
+  .mentor-card .facts div{display:flex;gap:12px;align-items:center;font-size:.92rem;color:var(--ink-dim)}
+  .mentor-card .facts i{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-style:normal;
+     background:rgba(34,211,238,.12);color:var(--cyan);font-size:.85rem;flex:none}
+
+  .about-copy h2{font-size:clamp(1.9rem,3.4vw,2.5rem);font-weight:800;letter-spacing:-.6px;margin-bottom:18px}
+  .about-copy h2 .grad{background:linear-gradient(110deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .about-copy p{color:var(--ink-dim);margin-bottom:16px}
+  .logos{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+  .logos span{font-size:.82rem;font-weight:600;color:var(--ink-dim);padding:8px 15px;border-radius:10px;
+     background:rgba(255,255,255,.03);border:1px solid var(--card-brd)}
+
+  /* ---------- Outcomes / path ---------- */
+  .path{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:step}
+  @media(max-width:940px){.path{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.path{grid-template-columns:1fr}}
+  .step{padding:28px 24px;border-radius:18px;background:var(--card);border:1px solid var(--card-brd);position:relative}
+  .step .n{counter-increment:step;font-size:2.4rem;font-weight:800;line-height:1;
+     background:linear-gradient(135deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .step h4{font-size:1.08rem;font-weight:700;margin:12px 0 8px}
+  .step p{font-size:.88rem;color:var(--ink-dim)}
+
+  /* ---------- Pricing ---------- */
+  .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
+  @media(max-width:940px){.pricing{grid-template-columns:1fr;max-width:440px;margin:0 auto}}
+  .plan{padding:34px 30px;border-radius:22px;background:var(--card);border:1px solid var(--card-brd);
+     display:flex;flex-direction:column;position:relative;transition:transform .3s var(--ease),border-color .3s}
+  .plan:hover{transform:translateY(-6px)}
+  .plan.feat{border-color:rgba(139,92,246,.6);background:linear-gradient(165deg,rgba(40,32,86,.7),rgba(18,20,46,.8));
+     box-shadow:0 40px 90px -40px var(--glow-violet)}
+  .plan .tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);font-size:.72rem;font-weight:700;letter-spacing:.6px;
+     padding:6px 16px;border-radius:999px;background:linear-gradient(135deg,var(--cyan),var(--violet));color:#050914}
+  .plan h3{font-size:1.15rem;font-weight:700}
+  .plan .price{font-size:2.5rem;font-weight:800;margin:12px 0 4px}
+  .plan .price span{font-size:.95rem;font-weight:500;color:var(--ink-faint)}
+  .plan .desc{font-size:.86rem;color:var(--ink-dim);margin-bottom:22px;min-height:40px}
+  .plan ul{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:26px;flex:1}
+  .plan li{font-size:.89rem;color:var(--ink-dim);display:flex;gap:10px}
+  .plan li::before{content:"✓";color:var(--teal);font-weight:800}
+  .plan .btn{width:100%;justify-content:center}
+
+  /* ---------- FAQ ---------- */
+  .faq{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+  .qa{border:1px solid var(--card-brd);border-radius:14px;background:var(--card);overflow:hidden}
+  .qa button{width:100%;text-align:left;padding:20px 24px;background:none;border:none;color:var(--ink);
+     font-size:1rem;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px}
+  .qa button .pm{color:var(--cyan);font-size:1.4rem;transition:transform .3s;flex:none}
+  .qa.open button .pm{transform:rotate(45deg)}
+  .qa .ans{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+  .qa .ans p{padding:0 24px 20px;color:var(--ink-dim);font-size:.93rem}
+
+  /* ---------- CTA / contact ---------- */
+  .cta-band{border-radius:28px;padding:56px 40px;text-align:center;position:relative;overflow:hidden;
+     background:linear-gradient(135deg,rgba(34,211,238,.14),rgba(139,92,246,.16));border:1px solid var(--card-brd)}
+  .cta-band::before,.cta-band::after{content:"";position:absolute;width:280px;height:280px;border-radius:50%;filter:blur(60px);opacity:.5}
+  .cta-band::before{background:var(--cyan);top:-120px;left:-60px}
+  .cta-band::after{background:var(--violet);bottom:-140px;right:-60px}
+  .cta-band .inner{position:relative;z-index:1}
+  .cta-band h2{font-size:clamp(1.9rem,3.6vw,2.6rem);font-weight:800;letter-spacing:-.6px;margin-bottom:14px}
+  .cta-band p{color:var(--ink-dim);max-width:520px;margin:0 auto 28px}
+  .cta-form{display:flex;gap:12px;max-width:480px;margin:0 auto;flex-wrap:wrap}
+  .cta-form input{flex:1;min-width:200px;padding:15px 20px;border-radius:999px;border:1px solid var(--card-brd);
+     background:rgba(6,9,20,.6);color:var(--ink);font-size:.95rem;outline:none;transition:border-color .25s}
+  .cta-form input:focus{border-color:var(--cyan)}
+  .form-note{font-size:.78rem;color:var(--ink-faint);margin-top:16px}
+
+  /* ---------- Footer ---------- */
+  footer{padding:50px 0 40px;border-top:1px solid var(--card-brd);margin-top:80px}
+  .foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  .foot .muted{color:var(--ink-faint);font-size:.85rem}
+  .foot-links{display:flex;gap:22px}
+  .foot-links a{color:var(--ink-dim);font-size:.88rem;transition:color .2s}
+  .foot-links a:hover{color:var(--cyan)}
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+  }
+</style>
+</head>
+<body>
+<div class="bg-scene"></div>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+<div class="stars" id="stars"></div>
+
+<!-- NAV -->
+<header id="hdr">
+  <div class="wrap nav">
+    <div class="brand">
+      <div class="logo">◆</div>
+      <div>TestCraft Academy<small>QA &amp; Automation Mentoring</small></div>
+    </div>
+    <nav class="nav-links">
+      <a href="#learn">Curriculum</a>
+      <a href="#mentor">Mentor</a>
+      <a href="#path">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="#enroll" class="btn btn-primary">Book a free intro call</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow"><span class="dot"></span>Now enrolling · Live online cohorts</span>
+      <h1 class="title">Become a <span class="grad">QA Automation Engineer</span> — mentored by a working pro</h1>
+      <p class="lead">Skip the tutorial hell. Learn <b>Playwright, Selenium, API testing &amp; CI/CD</b> the way real teams build them, guided by an <b>ISTQB-certified Senior Automation Engineer</b> with 12 years shipping tests for banks, CRMs and streaming platforms.</p>
+      <div class="hero-cta">
+        <a href="#enroll" class="btn btn-primary">Start learning →</a>
+        <a href="#learn" class="btn btn-ghost">Explore the curriculum</a>
+      </div>
+      <div class="trust">
+        <div class="t"><b>12+ yrs</b><span>Industry experience</span></div>
+        <div class="sep"></div>
+        <div class="t"><b>ISTQB</b><span>Certified tester</span></div>
+        <div class="sep"></div>
+        <div class="t"><b>1:1 &amp; group</b><span>Live mentoring</span></div>
+      </div>
+    </div>
+
+    <!-- 3D floating cluster -->
+    <div class="hero-3d">
+      <div class="stage" id="stage">
+        <div class="ring float"></div>
+
+        <div class="badge-cert float anim-float" data-depth="1.6">★ ISTQB Certified Tester</div>
+
+        <div class="core-card float anim-float" data-depth="0.5">
+          <div class="avatar">KP</div>
+          <h3>Kishore Palli</h3>
+          <div class="role">Senior Automation Engineer</div>
+          <div class="terminal">
+            <div><span class="c">$</span> <span class="p">npx</span> playwright test</div>
+            <div class="g">✓ login.spec.ts (12 passed)</div>
+            <div class="g">✓ api/accounts.spec.ts (8 passed)</div>
+            <div><span class="c"># mentoring you, one green run at a time</span></div>
+          </div>
+        </div>
+
+        <div class="chip c1 float anim-float" data-depth="2.4" style="animation-delay:-1s">
+          <span class="ic">🎭</span><div>Playwright<small>UI &amp; E2E</small></div>
+        </div>
+        <div class="chip c2 float anim-float" data-depth="2.8" style="animation-delay:-2.5s">
+          <span class="ic">🔌</span><div>REST API<small>Postman · REST Assured</small></div>
+        </div>
+        <div class="chip c3 float anim-float" data-depth="2.2" style="animation-delay:-1.8s">
+          <span class="ic">⚙️</span><div>CI/CD<small>GitHub Actions</small></div>
+        </div>
+        <div class="chip c4 float anim-float" data-depth="3" style="animation-delay:-3.2s">
+          <span class="ic">📱</span><div>Mobile<small>Appium · BrowserStack</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS MARQUEE -->
+<section class="marquee-sec">
+  <div class="wrap">
+    <p style="text-align:center;color:var(--ink-faint);font-size:.82rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px">Tools you'll master hands-on</p>
+  </div>
+  <div class="marquee">
+    <div class="track" id="track">
+      <span class="tech">🎭 <b>Playwright</b></span>
+      <span class="tech">🕸️ <b>Selenium</b></span>
+      <span class="tech">🌲 <b>Cypress</b></span>
+      <span class="tech">🔌 <b>REST Assured</b></span>
+      <span class="tech">📮 <b>Postman</b></span>
+      <span class="tech">🥒 <b>Cucumber BDD</b></span>
+      <span class="tech">🧪 <b>TestNG</b></span>
+      <span class="tech">⚙️ <b>GitHub Actions</b></span>
+      <span class="tech">🐳 <b>Docker</b></span>
+      <span class="tech">📱 <b>Appium</b></span>
+      <span class="tech">🧭 <b>BrowserStack</b></span>
+      <span class="tech">🗃️ <b>SQL</b></span>
+      <span class="tech">🤖 <b>Robot Framework</b></span>
+      <span class="tech">☁️ <b>Azure DevOps</b></span>
+    </div>
+  </div>
+</section>
+
+<!-- CURRICULUM -->
+<section class="sec" id="learn">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kick">The Curriculum</div>
+      <h2>Six tracks that take you from zero to job-ready</h2>
+      <p>Each track is project-based — you build a real, portfolio-worthy automation framework, not throwaway snippets.</p>
+    </div>
+    <div class="grid g3">
+      <div class="tilt reveal"><div class="course">
+        <span class="lvl">Beginner</span>
+        <div class="num">TRACK 01</div>
+        <div class="ic">🧱</div>
+        <h3>QA Foundations</h3>
+        <p>Think like a tester before you automate anything.</p>
+        <ul>
+          <li>SDLC, Agile &amp; the ISTQB mindset</li>
+          <li>Writing sharp test cases &amp; defect reports</li>
+          <li>Risk-based &amp; exploratory testing</li>
+        </ul>
+      </div></div>
+
+      <div class="tilt reveal"><div class="course">
+        <span class="lvl">Core</span>
+        <div class="num">TRACK 02</div>
+        <div class="ic">🎭</div>
+        <h3>Playwright Automation</h3>
+        <p>The modern UI automation stack, in JavaScript/TypeScript.</p>
+        <ul>
+          <li>Locators, fixtures &amp; the Page Object Model</li>
+          <li>Data-driven tests with external JSON</li>
+          <li>Traces, retries &amp; flake-free suites</li>
+        </ul>
+      </div></div>
+
+      <div class="tilt reveal"><div class="course">
+        <span class="lvl">Core</span>
+        <div class="num">TRACK 03</div>
+        <div class="ic">🔌</div>
+        <h3>API Test Automation</h3>
+        <p>Validate the layer beneath the UI where the real logic lives.</p>
+        <ul>
+          <li>REST fundamentals with Postman</li>
+          <li>REST Assured (Java) &amp; schema validation</li>
+          <li>Contract, template &amp; negative testing</li>
+        </ul>
+      </div></div>
+
+      <div class="tilt reveal"><div class="course">
+        <span class="lvl">Advanced</span>
+        <div class="num">TRACK 04</div>
+        <div class="ic">🥒</div>
+        <h3>BDD &amp; Frameworks</h3>
+        <p>Build maintainable frameworks teams actually want to inherit.</p>
+        <ul>
+          <li>Cucumber &amp; Serenity BDD</li>
+          <li>Reusable libraries &amp; common methods</li>
+          <li>Selenium + TestNG design patterns</li>
+        </ul>
+      </div></div>
+
+      <div class="tilt reveal"><div class="course">
+        <span class="lvl">Advanced</span>
+        <div class="num">TRACK 05</div>
+        <div class="ic">⚙️</div>
+        <h3>CI/CD &amp; DevOps</h3>
+        <p>Ship your tests so they run on every push, automatically.</p>
+        <ul>
+          <li>Pipelines with GitHub Actions &amp; Jenkins</li>
+          <li>Dockerised, parallel test execution</li>
+          <li>Reporting, artifacts &amp; notifications</li>
+        </ul>
+      </div></div>
+
+      <div class="tilt reveal"><div class="course">
+        <span class="lvl">Career</span>
+        <div class="num">TRACK 06</div>
+        <div class="ic">🚀</div>
+        <h3>Career &amp; Interview Prep</h3>
+        <p>Turn skills into offers with real-world coaching.</p>
+        <ul>
+          <li>Portfolio project &amp; GitHub review</li>
+          <li>Resume, LinkedIn &amp; mock interviews</li>
+          <li>Mobile, performance &amp; AI-tool add-ons</li>
+        </ul>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MENTOR / ABOUT -->
+<section class="sec" id="mentor">
+  <div class="wrap about">
+    <div class="reveal">
+      <div class="mentor-card">
+        <div class="big">KP</div>
+        <h3>Kishore Palli</h3>
+        <div class="sub">Senior Automation Engineer · Sydney, Australia</div>
+        <div class="facts">
+          <div><i>★</i> ISTQB Certified Tester (Foundation Level)</div>
+          <div><i>✓</i> Certified UFT One v15.x Professional</div>
+          <div><i>⏱</i> 12 years across banking, CRM &amp; broadcasting</div>
+          <div><i>👥</i> Led a 6-member offshore QA team</div>
+          <div><i>🤖</i> Works daily with Copilot, Claude Code &amp; MCP</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-copy reveal">
+      <h2>Learn from someone who <span class="grad">ships tests for a living</span></h2>
+      <p>I'm not a full-time course creator — I'm a working Senior Automation Engineer who has spent 12 years building and leading QA on large transformation programs. I've automated home-loan origination on Oracle Banking, tested Kafka messaging on streaming platforms, and stood up Playwright &amp; Selenium frameworks from scratch.</p>
+      <p>That means you learn the way real teams actually work: role-based workflows, migration testing, CI/CD pipelines, code review and clean, reusable frameworks — not toy examples. Every lesson is drawn from problems I've solved on the job.</p>
+      <div class="logos">
+        <span>AMP</span><span>Westpac (Cognizant)</span><span>Foxtel</span><span>Infosys</span><span>Oracle Banking Platform</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PATH -->
+<section class="sec" id="path">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kick">How it works</div>
+      <h2>A clear path from first test to first offer</h2>
+      <p>Live mentoring, real projects and accountability — structured so you actually finish.</p>
+    </div>
+    <div class="path">
+      <div class="step reveal"><div class="n">01</div><h4>Free intro call</h4><p>We map your goals and background, and pick the right starting track for you.</p></div>
+      <div class="step reveal"><div class="n">02</div><h4>Learn by building</h4><p>Weekly live sessions where you write real automation and get instant feedback.</p></div>
+      <div class="step reveal"><div class="n">03</div><h4>Ship a portfolio</h4><p>You leave with a complete framework on GitHub that proves your skills.</p></div>
+      <div class="step reveal"><div class="n">04</div><h4>Land the role</h4><p>Resume, mock interviews and referrals to help you convert skills into offers.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="sec" id="pricing">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kick">Mentoring plans</div>
+      <h2>Pick the pace that fits you</h2>
+      <p>Every plan includes lifetime access to lesson recordings, project templates and the private community.</p>
+    </div>
+    <div class="pricing">
+      <div class="plan reveal">
+        <h3>Self-Paced</h3>
+        <div class="price">$49<span>/month</span></div>
+        <p class="desc">Structured tracks you work through on your own schedule.</p>
+        <ul>
+          <li>All 6 curriculum tracks</li>
+          <li>Recorded lessons &amp; code repos</li>
+          <li>Project templates &amp; trackers</li>
+          <li>Community Q&amp;A access</li>
+        </ul>
+        <a href="#enroll" class="btn btn-ghost">Get started</a>
+      </div>
+
+      <div class="plan feat reveal">
+        <span class="tag">MOST POPULAR</span>
+        <h3>Live Cohort</h3>
+        <div class="price">$299<span>/month</span></div>
+        <p class="desc">Small-group live classes with weekly hands-on builds.</p>
+        <ul>
+          <li>Everything in Self-Paced</li>
+          <li>Weekly live group sessions</li>
+          <li>Code reviews on your work</li>
+          <li>Portfolio project &amp; certificate</li>
+          <li>Interview &amp; resume prep</li>
+        </ul>
+        <a href="#enroll" class="btn btn-primary">Join the cohort</a>
+      </div>
+
+      <div class="plan reveal">
+        <h3>1:1 Mentoring</h3>
+        <div class="price">$799<span>/month</span></div>
+        <p class="desc">Private, personalised coaching tailored to your goals.</p>
+        <ul>
+          <li>Everything in Live Cohort</li>
+          <li>Weekly private 1:1 sessions</li>
+          <li>Custom learning roadmap</li>
+          <li>Direct chat support</li>
+          <li>Job-referral network access</li>
+        </ul>
+        <a href="#enroll" class="btn btn-ghost">Apply now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="kick">Questions</div>
+      <h2>Frequently asked</h2>
+    </div>
+    <div class="faq reveal">
+      <div class="qa"><button>Do I need programming experience to start?<span class="pm">+</span></button>
+        <div class="ans"><p>No. The Foundations and Playwright tracks assume you're starting fresh. We build up your JavaScript/TypeScript alongside your testing skills, at a pace that works for beginners.</p></div></div>
+      <div class="qa"><button>Are the sessions live or pre-recorded?<span class="pm">+</span></button>
+        <div class="ans"><p>Both. Live Cohort and 1:1 plans include real-time sessions where you code with me and ask questions. Every session is also recorded, so you keep lifetime access to review anytime.</p></div></div>
+      <div class="qa"><button>Will I have something to show employers?<span class="pm">+</span></button>
+        <div class="ans"><p>Yes — you finish with a complete, production-style automation framework on GitHub (UI + API + CI/CD), plus a polished resume and mock-interview practice to present it confidently.</p></div></div>
+      <div class="qa"><button>Which tools will I actually learn?<span class="pm">+</span></button>
+        <div class="ans"><p>Playwright, Selenium, Cypress, REST Assured, Postman, Cucumber/Serenity BDD, TestNG, GitHub Actions, Docker and mobile testing with Appium &amp; BrowserStack — the same stack used on real enterprise projects.</p></div></div>
+      <div class="qa"><button>How much time should I commit each week?<span class="pm">+</span></button>
+        <div class="ans"><p>Plan for around 5–7 hours a week: one live session plus practice and your portfolio project. Self-paced learners can go faster or slower as life allows.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / ENROLL -->
+<section class="sec" id="enroll">
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <div class="inner">
+        <h2>Ready to write your first green test run?</h2>
+        <p>Book a free 20-minute intro call, or drop your email and I'll send you the full curriculum and next cohort dates.</p>
+        <form class="cta-form" id="signup" novalidate>
+          <input type="email" id="email" placeholder="you@email.com" aria-label="Email address" required />
+          <button type="submit" class="btn btn-primary">Send me the details</button>
+        </form>
+        <div class="form-note" id="formNote">No spam — just course info and cohort dates. Unsubscribe anytime.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap foot">
+    <div class="brand">
+      <div class="logo">◆</div>
+      <div>TestCraft Academy<small>Mentored by Kishore Palli</small></div>
+    </div>
+    <div class="foot-links">
+      <a href="#learn">Curriculum</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#enroll">Enroll</a>
+    </div>
+    <div class="muted">© <span id="yr"></span> TestCraft Academy · Sydney, NSW</div>
+  </div>
+</footer>
+
+<script>
+  // Year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Sticky nav
+  const hdr = document.getElementById('hdr');
+  const onScroll = () => hdr.classList.toggle('scrolled', window.scrollY > 24);
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  // Stars
+  (function(){
+    const box = document.getElementById('stars');
+    const n = window.innerWidth < 640 ? 40 : 80;
+    let html = '';
+    for(let i=0;i<n;i++){
+      const x = Math.random()*100, y = Math.random()*100, d = (Math.random()*4).toFixed(2), s=(0.6+Math.random()*1.6).toFixed(1);
+      html += `<span class="star" style="left:${x}%;top:${y}%;animation-delay:${d}s;width:${s}px;height:${s}px"></span>`;
+    }
+    box.innerHTML = html;
+  })();
+
+  // Scroll reveal
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  }, {threshold:0.15});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{ el.style.transitionDelay = (i%3*80)+'ms'; io.observe(el); });
+
+  // Hero 3D parallax (mouse)
+  const stage = document.getElementById('stage');
+  const layers = stage ? stage.querySelectorAll('[data-depth]') : [];
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(stage && !reduce){
+    let raf = null, tx=0, ty=0;
+    const heroSec = stage.closest('.hero');
+    heroSec.addEventListener('mousemove', (ev)=>{
+      const r = heroSec.getBoundingClientRect();
+      tx = ((ev.clientX - r.left)/r.width - 0.5);
+      ty = ((ev.clientY - r.top)/r.height - 0.5);
+      if(!raf) raf = requestAnimationFrame(apply);
+    });
+    heroSec.addEventListener('mouseleave', ()=>{ tx=0; ty=0; if(!raf) raf=requestAnimationFrame(apply); });
+    function apply(){
+      stage.style.transform = `rotateY(${tx*10}deg) rotateX(${-ty*10}deg)`;
+      layers.forEach(l=>{
+        const d = parseFloat(l.getAttribute('data-depth'));
+        l.style.transform = `translate3d(${tx*d*26}px, ${ty*d*26}px, 0)`;
+      });
+      raf = null;
+    }
+  }
+
+  // Card tilt
+  if(!reduce){
+    document.querySelectorAll('.tilt').forEach(card=>{
+      card.addEventListener('mousemove', e=>{
+        const r = card.getBoundingClientRect();
+        const px = (e.clientX - r.left)/r.width - 0.5;
+        const py = (e.clientY - r.top)/r.height - 0.5;
+        card.style.transform = `perspective(900px) rotateY(${px*9}deg) rotateX(${-py*9}deg) translateY(-4px)`;
+      });
+      card.addEventListener('mouseleave', ()=>{ card.style.transform=''; });
+    });
+  }
+
+  // FAQ accordion
+  document.querySelectorAll('.qa button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const qa = btn.parentElement;
+      const open = qa.classList.contains('open');
+      document.querySelectorAll('.qa').forEach(o=>{o.classList.remove('open'); o.querySelector('.ans').style.maxHeight=null;});
+      if(!open){ qa.classList.add('open'); const ans=qa.querySelector('.ans'); ans.style.maxHeight = ans.scrollHeight+'px'; }
+    });
+  });
+
+  // Signup (front-end demo only)
+  const form = document.getElementById('signup');
+  form.addEventListener('submit', e=>{
+    e.preventDefault();
+    const email = document.getElementById('email');
+    const note = document.getElementById('formNote');
+    const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
+    if(!ok){ note.textContent = 'Please enter a valid email address.'; note.style.color = '#fca5a5'; return; }
+    note.textContent = "🎉 Thanks! Check your inbox — the full curriculum and next cohort dates are on the way.";
+    note.style.color = '#5eead4';
+    email.value = '';
+  });
+</script>
+</body>
+</html>
