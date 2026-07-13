@@ -1,5 +1,6 @@
 # Generated report outputs (produced by CI / local runs)
 test-results/reports/daily-stock-report.html
 test-results/reports/daily-stock-report.json
-test-results/reports/preview.png
 test-results/reports/daily-briefing.html
+# Local preview screenshots (any PNG generated into the reports dir)
+test-results/reports/*.png
