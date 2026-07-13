@@ -70,9 +70,13 @@ export class GitHubTrendingPage extends BasePage {
       const rawName  = await nameEl.getAttribute('href') ?? '';
       const name     = rawName.replace(/^\//, '');          // strip leading /
 
-      // Description
+      // Description — some trending repos have none, so guard on count()
+      // first. Calling textContent() on a missing <p> auto-waits for the full
+      // test timeout and then throws, which was failing the whole briefing.
       const descEl   = item.locator('p');
-      const desc     = (await descEl.textContent() ?? '').trim();
+      const desc     = await descEl.count() > 0
+        ? (await descEl.first().textContent() ?? '').trim()
+        : '';
 
       // Language
       const langEl   = item.locator('[itemprop="programmingLanguage"]');
