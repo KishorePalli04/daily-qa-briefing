@@ -25,9 +25,13 @@ const WEIGHTS = {
 const clamp01 = (x) => Math.max(0, Math.min(1, x));
 
 function analyze(ticker, series, news) {
-  const { closes, volumes, lastClose, prevClose } = series;
+  const { closes, volumes, lastClose } = series;
 
-  const ret1d = prevClose ? ((lastClose - prevClose) / prevClose) * 100 : 0;
+  // Derive every return from the daily closes array so 1D/1W/1M are on the
+  // same footing. (Yahoo's meta.chartPreviousClose is the close BEFORE the
+  // chart range starts — ~3 months ago — not yesterday, so it must not be
+  // used for the 1-day change.)
+  const ret1d = ind.pctReturn(closes, 1) ?? 0;
   const ret5d = ind.pctReturn(closes, 5);
   const ret20d = ind.pctReturn(closes, 20);
   const sma20 = ind.sma(closes, 20);
@@ -162,6 +166,7 @@ function rank(results) {
     top: sorted.slice(0, 6),
     australian: sorted.filter((a) => a.ticker.market === 'AU').slice(0, 8),
     international: sorted.filter((a) => a.ticker.market === 'INTL').slice(0, 8),
+    indian: sorted.filter((a) => a.ticker.market === 'IN').slice(0, 8),
     generatedAt: new Date().toISOString(),
     universeCount: results.length,
     analysedCount: analysed.length,

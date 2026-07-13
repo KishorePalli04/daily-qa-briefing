@@ -77,6 +77,7 @@ async function main() {
         universeCount: ranked.universeCount,
         top: ranked.top.map(summarise),
         australian: ranked.australian.map(summarise),
+        indian: ranked.indian.map(summarise),
         international: ranked.international.map(summarise),
       },
       null,

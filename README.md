@@ -5,9 +5,9 @@ A **production-grade Playwright framework** that combines **UI scraping** and
 via **GitHub Actions** every morning.
 
 > 📈 **Also in this repo:** [**Daily Stock Picks**](stock-report/README.md) — a
-> news-aware technical screener that ranks Australian (ASX) and international
-> stocks each weekday and emails you an HTML report of the best picks.
-> Run it with `npm run stocks:demo` (offline) or `npm run stocks` (live).
+> news-aware technical screener that ranks Australian (ASX), Indian (NSE) and
+> international stocks each weekday and emails you an HTML report of the best
+> picks. Run it with `npm run stocks:demo` (offline) or `npm run stocks` (live).
 
 ---
 

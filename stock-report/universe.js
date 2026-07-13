@@ -72,6 +72,35 @@ const INTERNATIONAL = [
   { yahoo: 'SAP', stooq: 'sap.us', name: 'SAP SE', currency: 'US$' },
 ].map((t) => ({ ...t, market: 'INTL' }));
 
-const UNIVERSE = [...AUSTRALIAN, ...INTERNATIONAL];
+// Indian equities — NSE listings via Yahoo's `.NS` suffix, priced in INR.
+const INDIAN = [
+  { yahoo: 'RELIANCE.NS', stooq: 'reliance.in', name: 'Reliance Industries', currency: '₹' },
+  { yahoo: 'TCS.NS', stooq: 'tcs.in', name: 'Tata Consultancy Services', currency: '₹' },
+  { yahoo: 'HDFCBANK.NS', stooq: 'hdfcbank.in', name: 'HDFC Bank', currency: '₹' },
+  { yahoo: 'INFY.NS', stooq: 'infy.in', name: 'Infosys', currency: '₹' },
+  { yahoo: 'ICICIBANK.NS', stooq: 'icicibank.in', name: 'ICICI Bank', currency: '₹' },
+  { yahoo: 'HINDUNILVR.NS', stooq: 'hindunilvr.in', name: 'Hindustan Unilever', currency: '₹' },
+  { yahoo: 'BHARTIARTL.NS', stooq: 'bhartiartl.in', name: 'Bharti Airtel', currency: '₹' },
+  { yahoo: 'ITC.NS', stooq: 'itc.in', name: 'ITC', currency: '₹' },
+  { yahoo: 'SBIN.NS', stooq: 'sbin.in', name: 'State Bank of India', currency: '₹' },
+  { yahoo: 'LT.NS', stooq: 'lt.in', name: 'Larsen & Toubro', currency: '₹' },
+  { yahoo: 'KOTAKBANK.NS', stooq: 'kotakbank.in', name: 'Kotak Mahindra Bank', currency: '₹' },
+  { yahoo: 'BAJFINANCE.NS', stooq: 'bajfinance.in', name: 'Bajaj Finance', currency: '₹' },
+  { yahoo: 'AXISBANK.NS', stooq: 'axisbank.in', name: 'Axis Bank', currency: '₹' },
+  { yahoo: 'ASIANPAINT.NS', stooq: 'asianpaint.in', name: 'Asian Paints', currency: '₹' },
+  { yahoo: 'MARUTI.NS', stooq: 'maruti.in', name: 'Maruti Suzuki', currency: '₹' },
+  { yahoo: 'HCLTECH.NS', stooq: 'hcltech.in', name: 'HCL Technologies', currency: '₹' },
+  { yahoo: 'SUNPHARMA.NS', stooq: 'sunpharma.in', name: 'Sun Pharmaceutical', currency: '₹' },
+  { yahoo: 'TITAN.NS', stooq: 'titan.in', name: 'Titan Company', currency: '₹' },
+  { yahoo: 'WIPRO.NS', stooq: 'wipro.in', name: 'Wipro', currency: '₹' },
+  { yahoo: 'ADANIENT.NS', stooq: 'adanient.in', name: 'Adani Enterprises', currency: '₹' },
+  { yahoo: 'TATAMOTORS.NS', stooq: 'tatamotors.in', name: 'Tata Motors', currency: '₹' },
+  { yahoo: 'NTPC.NS', stooq: 'ntpc.in', name: 'NTPC', currency: '₹' },
+  { yahoo: 'POWERGRID.NS', stooq: 'powergrid.in', name: 'Power Grid Corp', currency: '₹' },
+  { yahoo: 'ULTRACEMCO.NS', stooq: 'ultracemco.in', name: 'UltraTech Cement', currency: '₹' },
+  { yahoo: 'NESTLEIND.NS', stooq: 'nestleind.in', name: 'Nestle India', currency: '₹' },
+].map((t) => ({ ...t, market: 'IN' }));
 
-module.exports = { AUSTRALIAN, INTERNATIONAL, UNIVERSE };
+const UNIVERSE = [...AUSTRALIAN, ...INTERNATIONAL, ...INDIAN];
+
+module.exports = { AUSTRALIAN, INTERNATIONAL, INDIAN, UNIVERSE };

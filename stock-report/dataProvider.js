@@ -74,7 +74,9 @@ async function fromYahoo(symbol) {
     lows,
     volumes,
     lastClose: meta.regularMarketPrice ?? closes[closes.length - 1],
-    prevClose: meta.chartPreviousClose ?? closes[closes.length - 2],
+    // The true prior *daily* close. NOT meta.chartPreviousClose, which is the
+    // close before the chart range begins (~3 months ago for a 3mo range).
+    prevClose: closes[closes.length - 2],
     source: 'yahoo',
   };
 }
