@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product Mockup — The Longevity Edge (1280×720)</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#050907;display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px;
+       font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+  .serif{font-family:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif}
+  .stage{width:1280px;height:720px;position:relative;overflow:hidden;border-radius:20px;
+         box-shadow:0 50px 130px rgba(0,0,0,.7);transform-origin:center}
+  .bg{position:absolute;inset:0;
+      background:
+        radial-gradient(760px 520px at 16% 6%,rgba(79,156,122,.42),transparent 60%),
+        radial-gradient(680px 560px at 92% 104%,rgba(201,168,106,.24),transparent 58%),
+        linear-gradient(155deg,#081210 0%,#0c1b15 52%,#070f0c 100%)}
+  /* faint topographic/contour lines suggesting healthspan curve + luxury texture */
+  .lines{position:absolute;inset:0;opacity:.10;
+         background-image:repeating-linear-gradient(115deg,transparent 0 38px,rgba(201,168,106,.9) 38px 39px)}
+  .frame{position:absolute;inset:26px;border:1px solid rgba(201,168,106,.35);border-radius:8px;pointer-events:none}
+  .inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-between;padding:74px 84px;color:#efece0}
+  .left{max-width:640px}
+  .eyebrow{font-size:15px;letter-spacing:6px;text-transform:uppercase;color:#c9a86a;font-weight:600}
+  .rule{width:60px;height:1px;background:#c9a86a;margin:24px 0}
+  h1{font-size:70px;line-height:1.02;letter-spacing:-1px;font-weight:500;margin-bottom:8px}
+  h1 em{font-style:italic;color:#c9a86a}
+  .sub{font-size:23px;color:#c4c8bd;font-weight:300;margin-top:20px;max-width:540px;line-height:1.4}
+  .pills{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
+  .pill{border:1px solid rgba(201,168,106,.4);color:#e7dcc2;padding:11px 20px;border-radius:2px;font-size:16px;letter-spacing:1px}
+  .cta{display:inline-flex;flex-direction:column;align-items:center;margin-top:38px;background:#4f9c7a;color:#07110c;
+       font-weight:700;font-size:22px;padding:20px 46px;border-radius:2px;letter-spacing:.5px}
+  .cta small{font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#0a1e14;opacity:.8;margin-top:6px}
+  .assurance{margin-top:24px;font-size:14px;letter-spacing:2px;text-transform:uppercase;color:#8b988e}
+
+  /* right: layered device + metric cards */
+  .right{position:relative;width:420px;height:540px;flex-shrink:0}
+  .card{position:absolute;background:linear-gradient(160deg,#12211b,#0d1a14);
+        border:1px solid rgba(201,168,106,.3);border-radius:12px;box-shadow:0 30px 60px rgba(0,0,0,.5)}
+  .dash{top:40px;right:0;width:420px;height:300px;padding:26px}
+  .dash .k{font-size:13px;letter-spacing:3px;text-transform:uppercase;color:#c9a86a}
+  .dash h3{font-size:30px;font-weight:500;margin:8px 0 20px;color:#efece0}
+  .metric{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-top:1px solid rgba(201,168,106,.16)}
+  .metric .lab{font-size:15px;color:#c4c8bd}
+  .metric .val{font-size:20px;color:#63b892}
+  .metric .val.gold{color:#c9a86a}
+  /* mini sparkline */
+  .spark{position:absolute;right:26px;width:90px;height:22px}
+
+  .pcard{bottom:0;left:-10px;width:210px;height:250px;padding:22px;transform:rotate(-5deg)}
+  .pcard .k{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#c9a86a}
+  .pcard .big{font-size:56px;color:#efece0;line-height:1;margin:14px 0 2px}
+  .pcard .big small{font-size:18px;color:#8b988e}
+  .pcard .cap{font-size:13px;color:#c4c8bd;font-weight:300;margin-top:8px;line-height:1.4}
+  .ring{position:absolute;bottom:22px;right:22px;width:56px;height:56px;border-radius:50%;
+        background:conic-gradient(#63b892 0 78%,rgba(255,255,255,.08) 78% 100%);
+        display:flex;align-items:center;justify-content:center}
+  .ring::after{content:"";width:40px;height:40px;border-radius:50%;background:#0d1a14}
+  .ring span{position:absolute;font-size:13px;color:#efece0;font-weight:600}
+  .seal{position:absolute;top:34px;right:26px;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#c9a86a;text-align:right}
+</style>
+</head>
+<body>
+  <div class="stage" id="stage">
+    <div class="bg"></div>
+    <div class="lines"></div>
+    <div class="frame"></div>
+    <div class="seal serif">Founding<br>Cohort · MMXXVI</div>
+    <div class="inner">
+      <div class="left">
+        <div class="eyebrow">For High Performers</div>
+        <div class="rule"></div>
+        <h1 class="serif">The <em>Longevity</em><br>Edge</h1>
+        <div class="sub">The peak-performance operating system — the $25k clinic, in 30 minutes a day.</div>
+        <div class="pills">
+          <span class="pill">Masterclass</span>
+          <span class="pill">Protocols</span>
+          <span class="pill">Dashboards</span>
+        </div>
+        <div class="cta">Claim Your Edge<small>60-day guarantee</small></div>
+        <div class="assurance">Private founding cohort · Lifetime access</div>
+      </div>
+
+      <div class="right">
+        <div class="card dash">
+          <div class="k">Your Edge · Day 60</div>
+          <h3 class="serif">Recovery Dashboard</h3>
+          <div class="metric"><span class="lab">Sleep score</span><span class="val">88 ▲</span></div>
+          <div class="metric"><span class="lab">Resting HR</span><span class="val">52 ▼</span></div>
+          <div class="metric"><span class="lab">HRV</span><span class="val">71 ▲</span></div>
+        </div>
+        <div class="card pcard">
+          <div class="k">Daily OS</div>
+          <div class="big serif">30<small>min</small></div>
+          <div class="cap">The whole system, wrapped around your day.</div>
+          <div class="ring"><span>78%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function fit(){
+      const s=document.getElementById('stage');
+      const scale=Math.min((window.innerWidth-40)/1280,(window.innerHeight-40)/720,1);
+      s.style.transform='scale('+scale+')';
+    }
+    window.addEventListener('resize',fit);fit();
+  </script>
+</body>
+</html>
