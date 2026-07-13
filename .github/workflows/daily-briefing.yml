@@ -52,7 +52,7 @@ jobs:
           echo "report=$REPORT" >> $GITHUB_OUTPUT
 
       - name: Upload Daily Briefing Report
-        if: always()
+        if: always() && steps.find_report.outputs.report != ''
         uses: actions/upload-artifact@v4
         with:
           name: daily-briefing-${{ github.run_number }}
