@@ -1,9 +1,9 @@
 # 📈 Daily Stock Picks
 
 An automated, news-aware technical screener that scans a universe of
-**Australian (ASX)** and **international** stocks every weekday, ranks them by a
-transparent opportunity score, and emails you a self-contained HTML report of
-the best picks for the day.
+**Australian (ASX)**, **Indian (NSE)** and **international** stocks every
+weekday, ranks them by a transparent opportunity score, and emails you a
+self-contained HTML report of the best picks for the day.
 
 > ⚠️ **Not financial advice.** This is an educational technical screen — not a
 > recommendation to buy or sell. Always do your own research.
@@ -103,5 +103,5 @@ failing the run.
 ## Extending the universe
 
 Add or remove tickers in `stock-report/universe.js`. Australian symbols use the
-`.AX` (ASX) suffix for Yahoo and `.au` for stooq; international symbols use their
-plain Yahoo symbol.
+`.AX` (ASX) suffix for Yahoo, Indian symbols use the `.NS` (NSE) suffix and are
+priced in ₹, and international symbols use their plain Yahoo symbol.

@@ -113,8 +113,10 @@ function demoNews(ticker) {
  */
 async function getNews(ticker, limit = 3) {
   if (DEMO) return demoNews(ticker);
-  const region = ticker.market === 'AU' ? 'AU' : 'US';
-  const lang = ticker.market === 'AU' ? 'en-AU' : 'en-US';
+  const regionByMarket = { AU: 'AU', IN: 'IN', INTL: 'US' };
+  const langByMarket = { AU: 'en-AU', IN: 'en-IN', INTL: 'en-US' };
+  const region = regionByMarket[ticker.market] || 'US';
+  const lang = langByMarket[ticker.market] || 'en-US';
   const url =
     `https://feeds.finance.yahoo.com/rss/2.0/headline?s=${encodeURIComponent(ticker.yahoo)}` +
     `&region=${region}&lang=${lang}`;

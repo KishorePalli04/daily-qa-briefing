@@ -44,6 +44,12 @@ function scoreColor(score) {
   return '#8b949e';
 }
 
+function marketLabel(market) {
+  if (market === 'AU') return '🇦🇺 Australia';
+  if (market === 'IN') return '🇮🇳 India';
+  return '🌏 International';
+}
+
 function heroCard(a, rank) {
   const t = a.ticker;
   const m = a.metrics;
@@ -59,7 +65,7 @@ function heroCard(a, rank) {
           <span>${fmtPrice(t.currency, m.price)}</span>
           <span style="color:${colorFor(m.ret1d)}">${pct(m.ret1d)}</span>
         </div>
-        <div class="hero-flag">${t.market === 'AU' ? '🇦🇺 Australia' : '🌏 International'}</div>
+        <div class="hero-flag">${marketLabel(t.market)}</div>
       </div>
     </td>`;
 }
@@ -152,6 +158,7 @@ function generateHTML(ranked) {
 
   const auRows = ranked.australian.map(row).join('') || emptyRow();
   const intlRows = ranked.international.map(row).join('') || emptyRow();
+  const inRows = (ranked.indian || []).map(row).join('') || emptyRow();
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -228,7 +235,7 @@ function generateHTML(ranked) {
     <h1>📈 Daily Stock Picks <span class="accent">Briefing</span></h1>
     <p class="subtitle">
       ${esc(date)} · ${esc(time)} AEST &nbsp;|&nbsp;
-      Scanned ${ranked.analysedCount}/${ranked.universeCount} stocks (Australian + International)
+      Scanned ${ranked.analysedCount}/${ranked.universeCount} stocks (Australian + International + Indian)
       &nbsp;|&nbsp; News-aware technical ranking
     </p>
 
@@ -245,6 +252,7 @@ function generateHTML(ranked) {
     </div>
 
     ${table('🇦🇺 Australian Picks (ASX)', 'top ranked ASX-listed names', auRows)}
+    ${table('🇮🇳 Indian Picks (NSE)', 'top ranked NSE-listed names', inRows)}
     ${table('🌏 International Picks', 'top ranked global names', intlRows)}
 
     <div class="method">

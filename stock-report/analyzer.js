@@ -166,6 +166,7 @@ function rank(results) {
     top: sorted.slice(0, 6),
     australian: sorted.filter((a) => a.ticker.market === 'AU').slice(0, 8),
     international: sorted.filter((a) => a.ticker.market === 'INTL').slice(0, 8),
+    indian: sorted.filter((a) => a.ticker.market === 'IN').slice(0, 8),
     generatedAt: new Date().toISOString(),
     universeCount: results.length,
     analysedCount: analysed.length,
