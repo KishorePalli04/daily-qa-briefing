@@ -30,7 +30,7 @@ export default defineConfig({
     baseURL: 'https://hacker-news.firebaseio.com',
 
     // Browser settings for UI tests
-    headless: true,
+    headless: false,
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
     trace: 'on-first-retry',

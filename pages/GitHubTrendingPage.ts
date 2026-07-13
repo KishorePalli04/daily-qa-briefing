@@ -50,34 +50,58 @@ export class GitHubTrendingPage extends BasePage {
     const repos: TrendingRepo[] = [];
 
     for (const item of items.slice(0, limit)) {
-      // Repo name (org/repo)
-      const nameEl   = item.locator('h2 a');
-      const rawName  = await nameEl.getAttribute('href') ?? '';
-      const name     = rawName.replace(/^\//, '');          // strip leading /
+      try {
+        // Repo name (org/repo)
+        const nameEl   = item.locator('h2 a');
+        const rawName  = await nameEl.getAttribute('href', { timeout: 5000 }) ?? '';
+        const name     = rawName.replace(/^\//, '');          // strip leading /
 
-      // Description
-      const descEl   = item.locator('p');
-      const desc     = (await descEl.textContent() ?? '').trim();
+        // Description — use short timeout to avoid hanging
+        const descEl   = item.locator('p');
+        let desc = '';
+        try {
+          desc = (await descEl.textContent({ timeout: 3000 }) ?? '').trim();
+        } catch {
+          // Element may not exist or be visible, continue with empty description
+          desc = '';
+        }
 
-      // Language
-      const langEl   = item.locator('[itemprop="programmingLanguage"]');
-      const lang     = await langEl.count() > 0
-        ? (await langEl.textContent() ?? '').trim()
-        : 'N/A';
+        // Language
+        const langEl   = item.locator('[itemprop="programmingLanguage"]');
+        let lang = 'N/A';
+        try {
+          if (await langEl.count() > 0) {
+            lang = (await langEl.textContent({ timeout: 3000 }) ?? '').trim();
+          }
+        } catch {
+          // Element may not be available, continue with N/A
+          lang = 'N/A';
+        }
 
-      // Stars today
-      const starsEl  = item.locator('span.d-inline-block.float-sm-right');
-      const stars    = await starsEl.count() > 0
-        ? (await starsEl.textContent() ?? '').trim()
-        : '0';
+        // Stars today
+        const starsEl  = item.locator('span.d-inline-block.float-sm-right');
+        let stars = '0';
+        try {
+          if (await starsEl.count() > 0) {
+            stars = (await starsEl.textContent({ timeout: 3000 }) ?? '').trim();
+          }
+        } catch {
+          // Element may not be available, continue with 0
+          stars = '0';
+        }
 
-      repos.push({
-        name,
-        description: desc,
-        language: lang,
-        stars,
-        url: `https://github.com/${name}`,
-      });
+        repos.push({
+          name,
+          description: desc,
+          language: lang,
+          stars,
+          url: `https://github.com/${name}`,
+        });
+      } catch (e) {
+        // Skip repos that fail to parse
+        console.warn(`[GitHubTrendingPage] Skipping repo due to error: ${e}`);
+        continue;
+      }
     }
 
     return repos;
