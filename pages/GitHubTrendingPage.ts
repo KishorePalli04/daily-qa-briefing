@@ -38,11 +38,26 @@ export class GitHubTrendingPage extends BasePage {
     await this.waitForElement(this.repoList.first());
   }
 
-  async openFilteredBy(language: string): Promise<void> {
+  /**
+   * Navigate to a language-filtered trending page.
+   *
+   * Unlike open(), this tolerates an EMPTY result. On quiet days GitHub may
+   * have zero repos trending for a given language in the daily window — that's
+   * a valid real-world state, not a bug — so we don't hard-wait/throw on it.
+   *
+   * @returns true if at least one repo card rendered, false if none did.
+   */
+  async openFilteredBy(language: string): Promise<boolean> {
     await this.navigateTo(
       `https://github.com/trending/${encodeURIComponent(language)}?since=daily`
     );
-    await this.waitForElement(this.repoList.first());
+    try {
+      await this.waitForElement(this.repoList.first());
+      return true;
+    } catch {
+      console.log(`[GitHubTrendingPage] No repos trending for "${language}" today`);
+      return false;
+    }
   }
 
   async getTrendingRepos(limit = 10): Promise<TrendingRepo[]> {

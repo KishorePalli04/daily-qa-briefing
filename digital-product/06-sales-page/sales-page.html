@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The AI Freelance Freedom Accelerator — Land High-Paying Clients Using AI</title>
+<style>
+  :root{
+    --ink:#141428; --muted:#5b5b74; --accent:#6C4DF6; --accent2:#00C2A8;
+    --gold:#FFB020; --bg:#ffffff; --soft:#f5f4fb; --line:#e7e6f2;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+       color:var(--ink);line-height:1.65;background:var(--bg);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:900px;margin:0 auto;padding:0 22px}
+  .btn{display:inline-block;background:linear-gradient(135deg,var(--accent),var(--accent2));
+       color:#fff;font-weight:700;padding:18px 36px;border-radius:100px;text-decoration:none;
+       font-size:18px;box-shadow:0 12px 30px rgba(108,77,246,.35);transition:transform .15s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-sub{display:block;font-size:13px;font-weight:500;opacity:.9;margin-top:4px}
+  .eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:13px;font-weight:700;color:var(--accent)}
+
+  /* Hero */
+  .hero{background:radial-gradient(1200px 500px at 50% -10%,#efeaff,transparent),linear-gradient(180deg,#fbfaff,#fff);
+        padding:70px 0 60px;text-align:center;border-bottom:1px solid var(--line)}
+  .hero h1{font-size:46px;line-height:1.08;letter-spacing:-1px;margin:18px 0 16px}
+  .hero h1 span{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.sub{font-size:20px;color:var(--muted);max-width:640px;margin:0 auto 30px}
+  .flag{display:inline-flex;gap:8px;align-items:center;background:#fff;border:1px solid var(--line);
+        padding:6px 14px;border-radius:100px;font-size:14px;font-weight:600;color:var(--muted)}
+  .trust{margin-top:22px;font-size:14px;color:var(--muted)}
+
+  section{padding:60px 0}
+  h2{font-size:34px;letter-spacing:-.5px;text-align:center;margin-bottom:12px}
+  .lead{text-align:center;color:var(--muted);font-size:18px;max-width:640px;margin:0 auto 40px}
+
+  /* Pain */
+  .pain{background:var(--soft)}
+  .pain-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;max-width:760px;margin:0 auto}
+  .pain-item{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;font-weight:500}
+  .pain-item b{color:var(--accent)}
+
+  /* Benefits */
+  .benefits{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+  .card{border:1px solid var(--line);border-radius:16px;padding:26px;background:#fff;box-shadow:0 6px 20px rgba(20,20,40,.04)}
+  .card .ico{font-size:30px}
+  .card h3{font-size:19px;margin:12px 0 8px}
+  .card p{color:var(--muted);font-size:15px}
+
+  /* Stack */
+  .stack{background:var(--soft)}
+  .stack-table{max-width:720px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .stack-row{display:flex;justify-content:space-between;gap:16px;padding:16px 22px;border-bottom:1px solid var(--line)}
+  .stack-row:last-child{border-bottom:none}
+  .stack-row .name{font-weight:600}
+  .stack-row .name small{display:block;color:var(--muted);font-weight:400;font-size:13px}
+  .stack-row .val{color:var(--muted);text-decoration:line-through;white-space:nowrap}
+  .stack-total{display:flex;justify-content:space-between;padding:18px 22px;background:#141428;color:#fff;font-weight:700;font-size:18px}
+
+  /* Price */
+  .price-box{max-width:520px;margin:0 auto;text-align:center;border:2px solid var(--accent);
+             border-radius:22px;padding:40px 30px;background:linear-gradient(180deg,#fff,#faf9ff);position:relative}
+  .ribbon{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--gold);
+          color:#3a2a00;font-weight:700;font-size:13px;padding:6px 16px;border-radius:100px}
+  .old{color:var(--muted);text-decoration:line-through;font-size:20px}
+  .now{font-size:56px;font-weight:800;letter-spacing:-2px;line-height:1;margin:6px 0}
+  .now small{font-size:20px;font-weight:600;color:var(--muted)}
+  .price-box .btn{margin-top:22px}
+  .guarantee{max-width:640px;margin:36px auto 0;text-align:center;border:1px dashed var(--accent2);
+             border-radius:16px;padding:24px;background:#f0fbf9}
+  .guarantee h3{color:var(--accent2);font-size:20px;margin-bottom:8px}
+
+  /* Testimonials */
+  .quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+  .quote{border:1px solid var(--line);border-radius:16px;padding:24px;background:#fff}
+  .quote p{font-style:italic;margin-bottom:14px}
+  .who{display:flex;align-items:center;gap:12px}
+  .av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;
+      display:flex;align-items:center;justify-content:center;font-weight:700}
+  .who b{display:block;font-size:15px}.who span{font-size:13px;color:var(--muted)}
+  .stars{color:var(--gold);letter-spacing:2px;margin-bottom:8px}
+
+  /* FAQ */
+  .faq{max-width:720px;margin:0 auto}
+  details{border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-bottom:12px;background:#fff}
+  summary{font-weight:600;cursor:pointer;list-style:none}
+  summary::-webkit-details-marker{display:none}
+  details p{color:var(--muted);margin-top:10px}
+
+  .final{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;text-align:center}
+  .final h2{color:#fff}
+  .final .lead{color:rgba(255,255,255,.9)}
+  .final .btn{background:#fff;color:var(--accent)}
+
+  footer{text-align:center;padding:30px;color:var(--muted);font-size:13px}
+  .disclaimer{max-width:720px;margin:0 auto;font-size:12px;color:var(--muted);text-align:center;padding:0 22px 40px}
+  @media(max-width:640px){.hero h1{font-size:34px}.now{font-size:44px}h2{font-size:27px}}
+</style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap">
+      <span class="flag">🇦🇺 Built for Australian freelancers</span>
+      <h1>Land High-Paying Clients<br>Using <span>AI</span> — in 30 Days</h1>
+      <p class="sub">The complete video course, templates & trackers that turn AI into your unfair advantage — so you finally have a calm, predictable freelance income.</p>
+      <a class="btn" href="#offer">Get Instant Access
+        <span class="btn-sub">Land your first AI client in 30 days — or your money back + $50</span></a>
+      <p class="trust">⭐️⭐️⭐️⭐️⭐️ Loved by 1,200+ Aussie freelancers · Instant digital access</p>
+    </div>
+  </header>
+
+  <!-- PAIN -->
+  <section class="pain">
+    <div class="wrap">
+      <span class="eyebrow" style="display:block;text-align:center">Does this sound like you?</span>
+      <h2>You're great at the work.<br>The <em>business</em> is the hard part.</h2>
+      <p class="lead">If any of these hit home, you're exactly who this was built for.</p>
+      <div class="pain-list">
+        <div class="pain-item">😰 <b>Feast or famine</b> — some months are amazing, some you're refreshing your bank app.</div>
+        <div class="pain-item">🙈 <b>You hate selling</b> — pitching makes you cringe, so you discount out of fear.</div>
+        <div class="pain-item">💸 <b>You undercharge</b> — and quietly resent it every single time.</div>
+        <div class="pain-item">🤯 <b>AI overwhelm</b> — you know it matters but there are 40 tools and zero time.</div>
+        <div class="pain-item">😨 <b>The fear</b> — "what if AI makes my skills worthless?"</div>
+        <div class="pain-item">🌀 <b>No system</b> — everything's in your head and clients slip through the cracks.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section>
+    <div class="wrap">
+      <span class="eyebrow" style="display:block;text-align:center">The transformation</span>
+      <h2>From overwhelmed to in-demand</h2>
+      <p class="lead">A simple, repeatable system — with AI doing the heavy lifting.</p>
+      <div class="benefits">
+        <div class="card"><div class="ico">🎯</div><h3>Become the obvious choice</h3><p>Nail your positioning so clients pick you — and stop competing on price.</p></div>
+        <div class="card"><div class="ico">🧲</div><h3>A predictable pipeline</h3><p>Find and attract qualified Aussie clients with AI, 20 minutes a day.</p></div>
+        <div class="card"><div class="ico">💬</div><h3>Pitch without the ick</h3><p>Copy-paste outreach that books calls — warm, human, never pushy.</p></div>
+        <div class="card"><div class="ico">💰</div><h3>Charge what you're worth</h3><p>Price the outcome with 3-tier proposals that double your average sale.</p></div>
+        <div class="card"><div class="ico">🤖</div><h3>One simple AI stack</h3><p>Four tools, not forty. Prompts and templates that just work.</p></div>
+        <div class="card"><div class="ico">🧾</div><h3>Calm money & tax</h3><p>ABN, GST & set-aside sorted with a plug-and-play tracker.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section class="stack" id="offer">
+    <div class="wrap">
+      <span class="eyebrow" style="display:block;text-align:center">Everything you get</span>
+      <h2>The complete system</h2>
+      <p class="lead">Course + templates + trackers + bonuses — worth $1,512.</p>
+      <div class="stack-table">
+        <div class="stack-row"><div class="name">🎥 Core Video Course<small>6 modules · 30 short, phone-friendly lessons</small></div><div class="val">$499</div></div>
+        <div class="stack-row"><div class="name">🧰 Client-Getting Prompt Vault<small>200 copy-paste prompts</small></div><div class="val">$149</div></div>
+        <div class="stack-row"><div class="name">📊 Income &amp; GST Tracker<small>Stay ATO-ready, know your numbers</small></div><div class="val">$79</div></div>
+        <div class="stack-row"><div class="name">🧮 Rate &amp; Proposal Calculator<small>Stop undercharging for good</small></div><div class="val">$99</div></div>
+        <div class="stack-row"><div class="name">✉️ Outreach &amp; Onboarding Kit<small>Fill-in-the-blank templates</small></div><div class="val">$89</div></div>
+        <div class="stack-row"><div class="name">📅 Content Engine<small>30 days of posts from 1 idea</small></div><div class="val">$129</div></div>
+        <div class="stack-row"><div class="name">🎁 Bonus: Community + monthly Q&amp;A call<small>Support &amp; accountability</small></div><div class="val">$299</div></div>
+        <div class="stack-row"><div class="name">🎁 Bonus: 30-Day Freedom Plan tracker<small>Do one thing a day</small></div><div class="val">$69</div></div>
+        <div class="stack-total"><span>Total value</span><span>$1,512</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICE -->
+  <section>
+    <div class="wrap">
+      <div class="price-box">
+        <span class="ribbon">🔥 Founding-member launch price</span>
+        <div class="old">Total value $1,512</div>
+        <div class="now">$199<small> AUD</small></div>
+        <div style="color:var(--muted)">or 3 × $79 · instant access</div>
+        <a class="btn" href="#" onclick="alert('Connect this button to your checkout (Stripe/Gumroad/ThriveCart).');return false;">Get Instant Access Now</a>
+        <p style="font-size:13px;color:var(--muted);margin-top:14px">⏳ Launch price for the first 100 members. Rises to $299 after launch week.</p>
+      </div>
+
+      <div class="guarantee">
+        <h3>🛡️ The "Land a Client" Guarantee</h3>
+        <p>Follow the 30-day plan, use the templates, and if you don't land at least one paying client, email us for a <b>100% refund + $50</b> for your time. All the risk is on us.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="stack">
+    <div class="wrap">
+      <span class="eyebrow" style="display:block;text-align:center">Real results</span>
+      <h2>Freelancers just like you</h2>
+      <p class="lead">Illustrative examples of the outcomes this system is designed to create.</p>
+      <div class="quotes">
+        <div class="quote"><div class="stars">★★★★★</div><p>"I sent my first AI pitch on day one and had a $1,200 job by the end of week two. The templates did the scary part for me."</p><div class="who"><div class="av">CB</div><div><b>Chloe B.</b><span>Designer · Newcastle, NSW</span></div></div></div>
+        <div class="quote"><div class="stars">★★★★★</div><p>"I finally stopped undercharging. The 3-tier proposals doubled my average project — clients keep picking the middle option."</p><div class="who"><div class="av">JM</div><div><b>James M.</b><span>Copywriter · Melbourne, VIC</span></div></div></div>
+        <div class="quote"><div class="stars">★★★★★</div><p>"The AI overwhelm is gone. Four tools, a prompt vault, done. I get my evenings back and the work is better."</p><div class="who"><div class="av">PS</div><div><b>Priya S.</b><span>Social media manager · Perth, WA</span></div></div></div>
+      </div>
+      <p style="text-align:center;font-size:12px;color:var(--muted);margin-top:16px">Testimonials shown are illustrative examples for this template.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <div class="wrap">
+      <h2>Questions? Answered.</h2>
+      <div class="faq" style="margin-top:30px">
+        <details><summary>Will AI make my skills worthless?</summary><p>The opposite. This course positions you as the professional who <em>commands</em> AI — a premium position clients pay more for. You become the editor and director, not the one replaced.</p></details>
+        <details><summary>Is this Australia-specific?</summary><p>Yes. Pricing is in AUD, and we cover ABN, the $75k GST threshold, BAS set-aside, and where Aussie clients actually hang out.</p></details>
+        <details><summary>I've bought courses before and never finished them.</summary><p>Lessons are 5–10 minutes and every one ends with a single action step. The 30-Day Plan tells you exactly what to do each day. It's built for busy people.</p></details>
+        <details><summary>I don't have much time.</summary><p>The system runs on ~20 minutes a day, and there's a weekend fast-track. AI does the heavy lifting.</p></details>
+        <details><summary>What if it doesn't work for me?</summary><p>Follow the plan and if you don't land a paying client in 30 days, you get a full refund plus $50. Zero risk.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final">
+    <div class="wrap">
+      <h2>Your freedom starts with one step</h2>
+      <p class="lead">You already have the skill. Now get the system — and let AI carry the rest.</p>
+      <a class="btn" href="#offer">Get Instant Access — $199</a>
+      <p style="margin-top:16px;font-size:14px;opacity:.9">🛡️ Land a client in 30 days or your money back + $50</p>
+    </div>
+  </section>
+
+  <p class="disclaimer">This page is a marketing template for the digital product "The AI Freelance Freedom Accelerator." Figures and testimonials are illustrative. The product provides general education, not financial, legal, or tax advice — consult a registered professional for your situation.</p>
+  <footer>© 2026 The AI Freelance Freedom Accelerator · Made for Australian freelancers 🇦🇺</footer>
+</body>
+</html>
