@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Central Barber Shop Sydney — Surry Hills | Concept Demo</title>
+<meta name="description" content="Concept website demo for Central Barber Shop Sydney, Surry Hills. Not the official website.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#111312;--surface:#1b1e1c;--card:#222623;--accent:#d4a545;--accent-dark:#b8892f;--accent-text:#111312;--text:#f2efe8;--muted:#a8a698}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter', sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+  .demo-banner{position:sticky;top:0;z-index:50;background:#000;color:#fff;text-align:center;font-size:.8rem;padding:.5rem 1rem;letter-spacing:.02em}
+  .demo-banner strong{color:#d4a545}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 1.25rem}
+  header.site{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 0}
+  .logo{font-family:'Oswald', sans-serif;font-size:1.35rem;letter-spacing:.04em;text-transform:uppercase}
+  .logo span{color:var(--accent)}
+  nav.main a{color:var(--muted);text-decoration:none;margin-left:1.4rem;font-size:.92rem;font-weight:500}
+  nav.main a:hover{color:var(--text)}
+  nav.main a.call{color:var(--accent);font-weight:600}
+  .hero{padding:5rem 0 4.5rem;background:radial-gradient(1200px 600px at 80% -10%, rgba(212,165,69,.18), transparent 60%), radial-gradient(800px 500px at 10% 110%, rgba(212,165,69,.08), transparent 60%)}
+  .hero .kicker{color:var(--accent);font-weight:600;letter-spacing:.18em;text-transform:uppercase;font-size:.8rem}
+  .hero h1{font-family:'Oswald', sans-serif;font-size:clamp(2.6rem,6vw,4.2rem);line-height:1.08;margin:.6rem 0 1rem;letter-spacing:.01em}
+  .hero p.sub{color:var(--muted);font-size:1.12rem;max-width:34rem;margin-bottom:2rem}
+  .btn{display:inline-block;padding:.85rem 1.6rem;border-radius:6px;text-decoration:none;font-weight:600;font-size:.95rem;letter-spacing:.02em}
+  .btn-primary{background:var(--accent);color:var(--accent-text)}
+  .btn-primary:hover{background:var(--accent-dark)}
+  .btn-ghost{border:1px solid rgba(255,255,255,.25);color:var(--text);margin-left:.6rem}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+  .badges{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2.2rem}
+  .badge{border:1px solid rgba(255,255,255,.14);color:var(--muted);border-radius:999px;padding:.35rem .95rem;font-size:.82rem}
+  section{padding:4.2rem 0}
+  .sec-kicker{color:var(--accent);font-weight:600;letter-spacing:.18em;text-transform:uppercase;font-size:.78rem}
+  h2{font-family:'Oswald', sans-serif;font-size:clamp(1.8rem,3.5vw,2.5rem);margin:.4rem 0 2rem;letter-spacing:.01em}
+  .services{background:var(--surface)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.1rem}
+  .card{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:1.5rem;}
+  .card h3{font-size:1.05rem;margin-bottom:.45rem;font-weight:600}
+  .card h3::before{content:"✂️";margin-right:.5rem;font-size:.95rem}
+  .card p{color:var(--muted);font-size:.92rem}
+  .about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:3rem;align-items:center}
+  .about-grid p{color:var(--muted);font-size:1.05rem}
+  .stat-box{background:var(--card);border-left:4px solid var(--accent);border-radius:8px;padding:1.6rem;}
+  .stat-box li{list-style:none;color:var(--muted);padding:.45rem 0;font-size:.98rem}
+  .stat-box li::before{content:"✓";color:var(--accent);font-weight:700;margin-right:.7rem}
+  .info{background:var(--surface)}
+  .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+  table.hours{width:100%;border-collapse:collapse}
+  table.hours td{padding:.55rem 0;border-bottom:1px solid rgba(255,255,255,.08);color:var(--muted);font-size:.95rem}
+  table.hours td:last-child{text-align:right;color:var(--text)}
+  .contact-line{display:flex;gap:.8rem;margin-bottom:1.1rem;color:var(--muted);font-size:.98rem}
+  .contact-line .ic{color:var(--accent)}
+  .contact-line a{color:var(--accent);text-decoration:none;font-weight:600}
+  .cta-band{text-align:center;padding:4.5rem 0;background:radial-gradient(1200px 600px at 80% -10%, rgba(212,165,69,.18), transparent 60%), radial-gradient(800px 500px at 10% 110%, rgba(212,165,69,.08), transparent 60%)}
+  .cta-band h2{margin-bottom:1.6rem}
+  footer{padding:2.2rem 0 3rem;border-top:1px solid rgba(255,255,255,.07)}
+  footer p{color:var(--muted);font-size:.8rem;max-width:46rem}
+  footer p+p{margin-top:.6rem}
+  @media(max-width:760px){
+    nav.main a:not(.call){display:none}
+    .about-grid,.info-grid{grid-template-columns:1fr;gap:2rem}
+    .btn-ghost{margin-left:0;margin-top:.6rem}
+  }
+</style>
+</head>
+<body>
+<div class="demo-banner"><strong>CONCEPT DEMO</strong> — a website design mockup prepared for Central Barber Shop Sydney. This is <strong>not</strong> the official website of this business.</div>
+<div class="wrap">
+  <header class="site">
+    <div class="logo">Central <span>Barber Shop Sydney</span></div>
+    <nav class="main">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Hours &amp; Contact</a>
+      
+    </nav>
+  </header>
+</div>
+<div class="hero">
+  <div class="wrap">
+    <div class="kicker">Surry Hills, Sydney</div>
+    <h1>Sharp cuts, steps from Central Station.</h1>
+    <p class="sub">Quality barbering on Elizabeth Street, Surry Hills — with a second chair in Haymarket. Open six days.</p>
+    <a class="btn btn-primary" href="#contact">Book online via Fresha</a>
+    <a class="btn btn-ghost" href="#services">See services</a>
+    <div class="badges"><span class="badge">2 locations</span><span class="badge">Open 6 days</span><span class="badge">Near Central Station</span></div>
+  </div>
+</div>
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="sec-kicker">What we do</div>
+    <h2>Services</h2>
+    <div class="grid">
+      <div class="card"><h3>Haircut</h3><p>Classic and modern cuts, tailored to you.</p></div>
+      <div class="card"><h3>Skin Fade</h3><p>Blended to perfection with a razor finish.</p></div>
+      <div class="card"><h3>Beard Trim</h3><p>Shaped, lined and finished clean.</p></div>
+      <div class="card"><h3>Cut &amp; Beard</h3><p>The full service, done efficiently.</p></div>
+      <div class="card"><h3>Buzz Cut</h3><p>Quick, clean and consistent.</p></div>
+      <div class="card"><h3>Student Cuts</h3><p>Quality cuts at student-friendly prices.</p></div>
+    </div>
+  </div>
+</section>
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div>
+        <div class="sec-kicker">Who we are</div>
+        <h2>About Central Barber Shop Sydney</h2>
+        <p>Central Barber Shop Sydney keeps the city looking sharp from two convenient spots — Elizabeth Street in Surry Hills and Lee Street in Haymarket. Fades, classic cuts and beard work, six days a week, right where you already are.</p>
+      </div>
+      <div class="stat-box"><ul><li>2 locations</li><li>Open 6 days</li><li>Near Central Station</li></ul></div>
+    </div>
+  </div>
+</section>
+<section class="info" id="contact">
+  <div class="wrap">
+    <div class="info-grid">
+      <div>
+        <div class="sec-kicker">When to find us</div>
+        <h2>Opening Hours</h2>
+        <table class="hours"><tr><td>Monday – Saturday</td><td>Open 6 days a week</td></tr><tr><td>Sunday</td><td>Closed</td></tr></table>
+      </div>
+      <div>
+        <div class="sec-kicker">Where to find us</div>
+        <h2>Contact</h2>
+        <div class="contact-line"><span class="ic">📍</span><span>314 Elizabeth St, Surry Hills NSW 2010<br>Also at: Shop 6, 2 Lee St, Haymarket NSW 2000</span></div>
+        
+        
+        <div class="contact-line"><span class="ic">🗓️</span><span>Book online via Fresha</span></div>
+        
+        <div class="contact-line"><span class="ic">🗺️</span><a href="https://maps.google.com/?q=Central%20Barber%20Shop%20Sydney%20314%20Elizabeth%20St%2C%20Surry%20Hills%20NSW%202010" rel="noopener">Open in Google Maps</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="cta-band">
+  <div class="wrap">
+    <h2>Two shops. One standard: sharp.</h2>
+    <a class="btn btn-primary" href="#contact">Book online via Fresha</a>
+  </div>
+</div>
+<footer>
+  <div class="wrap">
+    <p><strong>Demo notice:</strong> This page is a concept design mockup prepared as a proposal for Central Barber Shop Sydney and is not the business's official website. It is temporarily hosted for review purposes only and is excluded from search engines.</p>
+    <p>Business details (address, phone, hours) were compiled from public listings and may be out of date. We're happy to correct any detail — or take this page down immediately on request.</p>
+  </div>
+</footer>
+</body>
+</html>
